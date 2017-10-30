@@ -6,7 +6,8 @@ mainLib=inc/
 all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs)
 
 ##Test Variables
-test_objs = tests-main.o KCTests.o SATests.o PVTests.o
+test_objs = tst/Catch/tests-main.o KCTests.o SATests.o PVTests.o
+test_exe = run_tests runSA_tests ruKC_tests runPV_tests 
 tstLib = tst/Catch
 ####SA Variables
 SA_objs= population.o #customer.o PopulationConfiguration.o
@@ -19,13 +20,12 @@ KCSrc = src/KC
 ####CP Variables
 CP_objs= dailyReport.o monthlyReport.o report.o weeklyReport.o
 CPLib = inc/CP
-
 ####PV Variables
 PV_objs= OpenWeather.o OpenWeatherFactory.o
 PVLib = inc/PV
 PVSrc = src/PV
 #############################Directives
-all: fss clean_intermediates
+all: fss clean
 	./fss
 
 fss: $(all_objs)
@@ -36,11 +36,9 @@ test: test_build
 
 clean:
 	rm *.o
-	rm run_tests
 
-clean_intermediates:
-	rm *.o
-
+clean_all: clean
+	rm $(test_exe) fss
 ######Main
 main.o: src/main.cpp
 	$(CC) -o $@ -c $^ -I $(mainLib)
@@ -48,9 +46,9 @@ main.o: src/main.cpp
 ######Tests
 test_build: $(test_objs)
 	$(CC) -o run_tests $^
-	clean_intermediates
+	clean
 
-tests-main.o: tst/Catch/tests-main.cpp
+tst/Catch/tests-main.o: tst/Catch/tests-main.cpp
 	$(CC) -o $@ -c $^ -I $(tstLib)
 ######SADirectives
 customer.o: src/SA/customer.o
@@ -65,8 +63,9 @@ PopulationConfiguration.o: src/SA/PopulationConfiguration.cpp
 SATests.o: tst/SA/test.cpp
 	$(CC) -o $@ -c $^ -I $(tstLib) $(SALib) $(SASrc)
 
-SATest_build: tests-main.o SATests.o
+SATest_build: tst/Catch/tests-main.o SATests.o
 	$(CC) -o run_SAtests $^
+	clean
 
 SATest: SATest_build
 	./run_SAtests
@@ -83,8 +82,9 @@ KCChooser.o: src/KC/KCChooser.cpp
 KCTests.o: tst/KC/KCTests.cpp
 	$(CC) -o $@ -c $^ -I $(KCLib) $(KCSrc) $(tstLib)
 
-KCTest_build: tests-main.o KCTests.o
+KCTest_build: tst/Catch/tests-main.o KCTests.o
 	$(CC) -o run_KCtests $^
+	clean	
 
 KCTest: KCTest_build
 	./run_KCtests
@@ -111,8 +111,9 @@ OpenWeatherFactory.o : src/PV/OpenWeatherFactory.cpp
 PVTests.o: tst/PV/PatTest.cpp
 	$(CC) -o $@ -c $^ -I $(PVLib) $(PVSrc) $(tstLib)
 
-PVTest_build: tests-main.o PVTests.o
+PVTest_build: tst/Catch/tests-main.o PVTests.o
 	$(CC) -o run_PVtests $^
+	clean
 
 PVTest: PVTest_build
 	./run_PVtests
