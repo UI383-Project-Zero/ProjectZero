@@ -1,10 +1,24 @@
+#ifndef KCATTRACTIONRANKER_H
+#define KCATTRACTIONRANKER_H
+
+class SAPopulation;
+class SACustomer;
+
+class PlHAttraction;
+class PlHAttractionList;
+
+class KCRideRanker;
+class KCGameRanker;
+class KCVendorRanker;
+class KCCoinStandRanker;
+
 /*
 	Attraction Stub structure.
 	Holds a pointer to a specific traction
 	Holds that attractions current rating
 */
 
-struct KCAttractionStub {PlHAttractionPointer attrPtr; int rating;};
+struct KCAttractionStub {PlHAttraction* attrPtr; int rating;};
 
 /*
 	Attraction Ranker super class
@@ -33,21 +47,21 @@ struct KCAttractionStub {PlHAttractionPointer attrPtr; int rating;};
 class KCAttractionRankerSuper {
 	protected:
 		int mCheapest;
-		forward_list<KCAttractionStub> mStubList;
+		KCAttractionStub * mStubList;
 		
 	public:
 		KCAttractionRankerSuper();
 		virtual ~KCAttractionRankerSuper();
 		
-		virtual void buildStubList(P1HAttractionList);
-		virtual int rateAttraction(KCAttractionStub);
+		void buildStubList(PlHAttractionList*);
+		int rateAttraction(KCAttractionStub*);
 		void rateAll();
 		void sortStubList();
 		void sortStub(KCAttractionStub);
 		
 		int getCheapest();
 		KCAttractionStub getTopAttraction();
-		KCAttractionStub getRankedAttraction(int place);
+		KCAttractionStub getRankedAttraction(int);
 };
 
 /*
@@ -66,12 +80,12 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 		KCAttractionRankerMaster();
 		~KCAttractionRankerMaster();
 		
-		void buildStubList(PlHAttractionList);
-		int rateAttraction(KCAttractionStub);
+		void buildStubList(PlHAttractionList*);
+		int rateAttraction(KCAttractionStub*);
 		
-		KCRideRanker mRideList;
-		KCGameRanker mGameList;
-		KCVendorRanker mVendorList;
+		KCRideRanker *mRideList;
+		KCGameRanker *mGameList;
+		KCVendorRanker *mVendorList;
 };
 
 /*
@@ -90,10 +104,10 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		int mLeastNauseating;
 	public:
 		KCRideRanker();
-		~KCAttractionRankerMaster();
+		~KCRideRanker();
 		
-		void buildStubList(PlHattractionList);
-		int rateAttraction(KCAttractionStub);
+		void buildStubList(PlHAttractionList*);
+		int rateAttraction(KCAttractionStub*);
 		
 		int getLeastThrilling();
 		int getLeastNauseating();
@@ -114,8 +128,8 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 		KCVendorRanker();
 		~KCVendorRanker();
 		
-		void buildStubList(PlHAttractionList);
-		int rateAttraction(KCAttractionStub);
+		void buildStubList(PlHAttractionList*);
+		int rateAttraction(KCAttractionStub*);
 };
 
 /*
@@ -132,12 +146,12 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 class KCGameRanker : protected KCAttractionRankerSuper{
 	public:
 		KCGameRanker();
-		~KCVendorRanker();
+		~KCGameRanker();
 		
-		void buildStubList(PlHAttractionList);
-		int rateAttraction(KCAttractionStub);
+		void buildStubList(PlHAttractionList*);
+		int rateAttraction(KCAttractionStub*);
 		
-		KCCoinStandRanker mCoinStandList;
+		KCCoinStandRanker *mCoinStandList;
 };
 
 /*
@@ -165,8 +179,10 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 		KCCoinStandRanker();
 		~KCCoinStandRanker();
 		
-		void buildStubList(PlHAttractionList);
-		int rateAttraction(KCAttractionStub);
+		void buildStubList(PlHAttractionList*);
+		int rateAttraction(KCAttractionStub*);
 
 		int getSmallest();
 };
+
+#endif //KCATTRACTIONRANKER_H

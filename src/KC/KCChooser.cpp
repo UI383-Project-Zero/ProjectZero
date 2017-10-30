@@ -1,13 +1,13 @@
 #include <iostream>
 #include "KCChooser.h"
-
+using namespace std;
 
 KCChooser::KCChooser(){
-  std::cout << std::endl << "Chooser set-up. Don't need much.";
+  cout << endl << "Chooser set-up. Don't need much.";
 }
 
 KCChooser::~KCChooser(){
-  std::cout << std::endl << "Chooser deleted.";
+  cout << endl << "Chooser deleted.";
 }
 
 void KCChooser::newSubject(SACustomer* sub){
@@ -15,16 +15,15 @@ void KCChooser::newSubject(SACustomer* sub){
 }
 
 unsigned int KCChooser::statusCheck(){
-  std::cout << std::endl << "Status checked.";
+  cout << endl << "Status checked.";
   return 0;
 }
 
 unsigned int KCChooser::patienceCheck(){
-  std::cout << std::endl << "Patience checked.";
+  cout << endl << "Patience checked.";
   return 0;
 }
 
-PlHAttractionPointer KCChooser::attractionSelect(){
-  std::cout << std::endl << "Attraction selected.";
-  return NULL;
+PlHAttraction* KCChooser::attractionSelect(){
+  cout << endl << "Attraction selected.";
 }

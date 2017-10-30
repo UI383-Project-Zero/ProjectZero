@@ -1,5 +1,4 @@
 #include <iostream>
-#include <forward_list>
 
 #include "KCAttractionRanker.h"
 
@@ -24,7 +23,7 @@ void KCAttractionRankerSuper::sortStubList(){
   std::cout << std::endl << "Sorted full list";
 }
 
-void KCAttractionRankerSuper::sortStub(){
+void KCAttractionRankerSuper::sortStub(KCAttractionStub aStub){
   std::cout << std::endl << "Moved stub to right spot";
 }
 
@@ -48,7 +47,7 @@ KCAttractionRankerMaster::KCAttractionRankerMaster(){
   std::cout << std::endl << "Created Master Rankeer";
 }
 
-KCAttractionRankerMaster::~KCAttractionRanekrMaster(){
+KCAttractionRankerMaster::~KCAttractionRankerMaster(){
   std::cout << std::endl << "Deleted Master Ranker";
 }
 
@@ -72,7 +71,7 @@ KCRideRanker::~KCRideRanker(){
   std::cout << std::endl << "Deleted Ride Ranker";
 }
 
-void KCRideRanker::buildStubList(){
+void KCRideRanker::buildStubList(PlHAttractionList *aList){
   std::cout << std::endl << "Built ride stub list";
 }
 
@@ -100,7 +99,7 @@ KCVendorRanker::~KCVendorRanker(){
   std::cout << std::endl << "Deleted Vendor Ranker";
 }
 
-void KCVendorRanker::buildStubList(){
+void KCVendorRanker::buildStubList(PlHAttractionList *aList){
   std::cout << std::endl << "Built Vendor stub list";
 }
 
@@ -121,7 +120,7 @@ KCGameRanker::~KCGameRanker(){
   std::cout << std::endl << "Deleted Game Ranker";
 }
 
-void KCGameRanker::buildStubList(){
+void KCGameRanker::buildStubList(PlHAttractionList *aList){
   std::cout << std::endl << "Built Game stub list";
 }
 
@@ -141,7 +140,7 @@ KCCoinStandRanker::~KCCoinStandRanker(){
   std::cout << std::endl << "Deleted CoinStand Ranker";
 }
 
-void KCCoinStandRanker::buildStubList(){
+void KCCoinStandRanker::buildStubList(PlHAttractionList *aList){
   std::cout << std::endl << "Built CoinStand stub list";
 }
 

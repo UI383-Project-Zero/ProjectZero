@@ -1,6 +1,6 @@
 #include <iostream>
-
-#include "KCCrowdDirector"
+#include "KCChooser.h"
+#include "KCCrowdDirector.h"
 
 KCCrowdDirector::KCCrowdDirector(){
   std::cout << std::endl << "Crowd Director created";
@@ -12,7 +12,6 @@ KCCrowdDirector::~KCCrowdDirector(){
 
 void KCCrowdDirector::getRides(PlHAttractionList *aList){
   std::cout << std::endl << "Got a list";
-  mMasterList.buildStubList(*aList);
 }
 
 void KCCrowdDirector::getPopulation(SAPopulation *aPop){

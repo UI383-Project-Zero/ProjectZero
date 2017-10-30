@@ -1,3 +1,6 @@
+#ifndef KCCHOOSER_H
+#define KCCHOOSER_H
+
 /* 
 	Chooser class
 
@@ -14,6 +17,9 @@
 		--AttractionSelect- Free customer. Chooses ride
 */
 
+class SACustomer;
+class PlHAttraction;
+
 class KCChooser{
 	private:
 		SACustomer* mSubject;
@@ -24,5 +30,7 @@ class KCChooser{
 		void newSubject(SACustomer*);
 		unsigned int statusCheck();
 		unsigned int patienceCheck();
-		PlHAttractionPointer attractionSelect();
+		PlHAttraction* attractionSelect();
 };
+
+#endif //KCCHOOSER_H

@@ -1,3 +1,5 @@
+#ifndef KCCROWDDIRECTOR_H
+#define KCCROWDDIRECTOR_H
 /*
 Crowd Director class
 
@@ -16,12 +18,19 @@ On start of day:
 -Gets new population pointer
 ---Or signals population to clear and generate new starting group
 */
+class KCChooser;
+class KCAttractionRankerMaster;
+
+class SAPopulation;
+class SACustomer;
+
+class PlHAttractionList;
 
 class KCCrowdDirector {
 	private:
 		SAPopulation *mCrowd;
 		KCChooser mDecider;
-		KCAttractionRankerMaster mMasterList;
+		KCAttractionRankerMaster *mMasterList;
 	public:
 		KCCrowdDirector();
 		~KCCrowdDirector();
@@ -34,3 +43,4 @@ class KCCrowdDirector {
 		
 		void updateCustomer(SACustomer*);
 };
+#endif //KCCROWDDIRECTOR_H

@@ -1,5 +1,5 @@
 #########Variables
-CC=gcc
+CC=g++
 
 ####KC Variables
 KC_objs= KCChooser.o KCCrowdDirector.o KCAttractionRanker.o
