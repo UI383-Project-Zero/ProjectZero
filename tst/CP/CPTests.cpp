@@ -3,7 +3,6 @@
 
 #include "catch.hpp"
 #include "report.cpp"
-//#include "OpenWeatherFactory.h"
 #include <vector>
 
 TEST_CASE("getWeather", "getWeather")
