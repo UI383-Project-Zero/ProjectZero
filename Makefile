@@ -6,8 +6,8 @@ mainLib=inc/
 all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs)
 
 ##Test Variables
-test_objs = tst/Catch/tests-main.o KCTests.o SATests.o PVTests.o
-test_exe = run_tests runSA_tests ruKC_tests runPV_tests 
+test_objs = tst/Catch/tests-main.o KCTests.o SATests.o PVTests.o JTTests.o
+test_exe = run_tests runSA_tests ruKC_tests runPV_tests runJT_tests
 tstLib = tst/Catch
 ####SA Variables
 SA_objs= population.o #customer.o PopulationConfiguration.o
@@ -24,6 +24,10 @@ CPLib = inc/CP
 PV_objs= OpenWeather.o OpenWeatherFactory.o
 PVLib = inc/PV
 PVSrc = src/PV
+####JT Variables
+JT_objs = Vendor.o Ride.o
+JTLib = inc/JT
+JTSrc = src/JT
 #############################Directives
 all: fss clean
 	./fss
@@ -117,3 +121,17 @@ PVTest_build: tst/Catch/tests-main.o PVTests.o
 
 PVTest: PVTest_build
 	./run_PVtests
+######JTDirectives
+Ride.o : src/JT/Ride.cpp
+	$(CC) -o $@ -c $^ -I $(JTLib)
+	
+Vendor.o : src/JT/Vendor.cpp
+	$(CC) -o $@ -c $^ -I $(JTLib)
+	
+JTTests.o: tst/JT/JTTests.cpp	
+	$(CC) -o $@ -c $^ -I $(JTLib) $(JTSrc) $(tstLib)
+	
+JTTest_build: tst/Catch/tests-main.o JTTests.o
+	$(CC) -o run_JTTests $^
+	clean
+	
