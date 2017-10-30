@@ -23,6 +23,6 @@ class KCChooser{
 		
 		void newSubject(SACustomer*);
 		unsigned int statusCheck();
-		unsigned int PatienceCheck();
-		PlHAttractionPointer AttractionSelect();
-}
+		unsigned int patienceCheck();
+		PlHAttractionPointer attractionSelect();
+};

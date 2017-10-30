@@ -26,11 +26,11 @@ class KCCrowdDirector {
 		KCCrowdDirector();
 		~KCCrowdDirector();
 		
-		void getRides(PlHAttractionList);
+		void getRides(PlHAttractionList*);
 		
 		void getPopulation(SAPopulation*);
 		
 		void updateCrowd();
 		
 		void updateCustomer(SACustomer*);
-}
+};
