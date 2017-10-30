@@ -10,10 +10,10 @@ fss: $(KC_objs)
 	$(CC) -o $@ $^
 
 KCCrowdDirector.o: src/KC/KCCrowdDirector.cpp
-	$(CC) -c -o $@ $^ -I $(KCLib)
+	$(CC) -o $@ -c $^ -I $(KCLib)
 
 KCChooser.o: src/KC/KCChooser.cpp
-	$(CC) -c -o $@ $^ -I $(KCLib)
+	$(CC) -o $@ -c $^ -I $(KCLib)
 
 clean:
 	rm *.o
