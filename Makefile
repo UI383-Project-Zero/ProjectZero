@@ -3,14 +3,18 @@ CC=g++
 
 mainLib=inc/
 
-all_objs = main.o $(KC_objs) $(CP_objs)
+all_objs = main.o $(KC_objs) $(CP_objs) $(PV_objs)
 ####KC Variables
 KC_objs= KCChooser.o KCCrowdDirector.o KCAttractionRanker.o
 KCLib = inc/KC
 
-####PC Variables
+####CP Variables
 CP_objs= dailyReport.o monthlyReport.o report.o weeklyreport.o
 CPLib = inc/CP
+
+####PV Variables
+PV_objs= OpenWeather.o OpenWeatherFactory.o
+PVLib = inc/PV
 #############################Directives
 all: fss clean
 
@@ -50,5 +54,13 @@ report.o : src/CP/report.cpp
 
 weeklyReport.o : src/CP/weeklyReport.cpp
 	$(CC) -o $@ -c $^ -I $(CPLib)
+
+######PVDirectives
+OpenWeather.o : src/PV/OpenWeather.cpp
+	$(CC) -o $@ -c $^ -I $(PVLib)
+
+OpenWeatherFactory.o : src/PV/OpenWeatherFactory.cpp
+	$(CC) -o $@ -c $^ -I $(PVLib)
+
 
 
