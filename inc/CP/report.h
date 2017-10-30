@@ -2,6 +2,9 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
+ #ifndef REPORT_H
+ #define REPORT_H
+
  #include <cstdlib>
  #include <vector>
  using namespace std;
@@ -18,3 +21,5 @@
     void getVendorStatistics();
     void getGameStatistics();
  };
+
+#endif
