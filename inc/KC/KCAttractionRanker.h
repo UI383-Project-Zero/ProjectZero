@@ -72,7 +72,7 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 		KCRideRanker mRideList;
 		KCGameRanker mGameList;
 		KCVendorRanker mVendorList;
-}
+};
 
 /*
 	Ride Ranker class
@@ -97,7 +97,7 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		
 		int getLeastThrilling();
 		int getLeastNauseating();
-}
+};
 
 /*
 	Vendor Ranker class
@@ -116,7 +116,7 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 		
 		void buildStubList(PlHAttractionList);
 		int rateAttraction(KCAttractionStub);
-}
+};
 
 /*
 	Game Ranker class
@@ -138,7 +138,7 @@ class KCGameRanker : protected KCAttractionRankerSuper{
 		int rateAttraction(KCAttractionStub);
 		
 		KCCoinStandRanker mCoinStandList;
-}
+};
 
 /*
 	Coin Stand Ranker
@@ -169,4 +169,4 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 		int rateAttraction(KCAttractionStub);
 
 		int getSmallest();
-}
+};
