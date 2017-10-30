@@ -2,6 +2,8 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
+#include "dailyReport.h"
+
  dailyReport::makeDailyReport(){
    /*
      This function will compile the daily report at the end of
