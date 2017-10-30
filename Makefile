@@ -3,7 +3,12 @@ CC=g++
 
 mainLib=inc/
 
-all_objs = main.o $(KC_objs) $(CP_objs) $(PV_objs)
+all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs)
+
+####SA Variables
+SA_objs= #customer.o population.o PopulationConfiguration.o
+SALib = inc/SA
+
 ####KC Variables
 KC_objs= KCChooser.o KCCrowdDirector.o KCAttractionRanker.o
 KCLib = inc/KC
@@ -29,6 +34,18 @@ clean:
 ######Main
 main.o: src/main.cpp
 	$(CC) -o $@ -c $^ -I $(mainLib)
+
+######SADirectives
+customer.o: inc/SA/customer.h
+	$(CC) -o $@ -c $^
+
+population.o: inc/SA/population.h
+	$(CC) -o $@ -c $^
+
+PopulationConfiguration.o: inc/SA/PopulationConfiguration.h
+	$(CC) -o $@ -c $^
+
+
 ######KCDirectives
 KCAttractionRanker.o: src/KC/KCAttractionRanker.cpp
 	$(CC) -o $@ -c $^ -I $(KCLib)
