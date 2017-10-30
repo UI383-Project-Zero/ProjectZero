@@ -2,7 +2,9 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
- dailyReport::makeWeeklyReport(){
+ #include "weeklyReport.h"
+
+ void weeklyReport::makeWeeklyReport(){
    /*
      This function will compile the weekly report at the end of
      each week. This will track the statistics for a particular week

@@ -2,7 +2,9 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
- dailyReport::makeWeeklyReport(){
+ #include "monthlyReport.h"
+
+ void monthlyReport::makeWeeklyReport(){
    /*
      This function will compile the wmonthly report at the end of
      each week. This will track the statistics for a particular month
