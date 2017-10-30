@@ -9,7 +9,7 @@ KC_objs= KCChooser.o KCCrowdDirector.o KCAttractionRanker.o
 KCLib = inc/KC
 
 ####CP Variables
-CP_objs= dailyReport.o monthlyReport.o report.o weeklyreport.o
+CP_objs= dailyReport.o monthlyReport.o report.o weeklyReport.o
 CPLib = inc/CP
 
 ####PV Variables
