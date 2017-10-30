@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace std;
 
- report::overallReport(){
+ void report::overallReport(){
    /*
       This function will compile the overall report at the end of
       the simulation. This will track the total amount of time and
@@ -24,7 +24,7 @@ using namespace std;
 
  }
 
- report::getWeather(){
+ void report::getWeather(){
 
    /*
       This funstion will get the weather from the GUI. As of right now
@@ -33,14 +33,14 @@ using namespace std;
    */
  }
 
- report::getPeopleStatistics(){
+ void report::getPeopleStatistics(){
    /*
       This will fetch the statiscics for all of the people in the park.
       Should include average money per person, satisfaction level ect.
    */
  }
 
- report::getRideStatistics(){
+ void report::getRideStatistics(){
    /*
       This will get the statistics for all of the rides in the park.
       Should include average number of people per given time slice,
@@ -48,7 +48,7 @@ using namespace std;
    */
  }
 
- report::getVendorStatistics(){
+ void report::getVendorStatistics(){
    /*
       Will fetch the statistics for the vendors in the park.
       Should include total number of people per time slice,
@@ -57,7 +57,7 @@ using namespace std;
    */
  }
 
- report::getGameStatistics(){
+ void report::getGameStatistics(){
    /*
       Will fetch statistics about all of the games in the park.
       Should include the total number of people per time slice,

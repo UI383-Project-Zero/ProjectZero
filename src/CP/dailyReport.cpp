@@ -2,7 +2,9 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
- dailyReport::makeDailyReport(){
+#include "dailyReport.h"
+
+ void dailyReport::makeDailyReport(){
    /*
      This function will compile the daily report at the end of
      each day. This will track the statistics for a particular day
