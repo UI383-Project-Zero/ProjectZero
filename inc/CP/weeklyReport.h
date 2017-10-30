@@ -2,7 +2,10 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
-#include "report.h"
+ #ifndef WEEKLY_REPORT_H
+ #define WEEKLY_REPORT_H
+
+ #include "report.h"
 
 class weeklyReport : public report{
   unsigned int totalDays;
@@ -15,3 +18,5 @@ class weeklyReport : public report{
 private:
   void makeWeeklyReport();
 };
+
+#endif

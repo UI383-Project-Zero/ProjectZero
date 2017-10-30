@@ -2,6 +2,9 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
+#ifndef DAILY_REPORT_H
+#define DAILY_REPORT_H
+
 #include "report.h"
 
 class dailyReport : public report{
@@ -15,3 +18,5 @@ class dailyReport : public report{
 private:
   void makeDailyReport();
 };
+
+#endif
