@@ -26,6 +26,7 @@ PVLib = inc/PV
 PVSrc = src/PV
 #############################Directives
 all: fss clean_intermediates
+	./fss
 
 fss: $(all_objs)
 	$(CC) -o $@ $^
