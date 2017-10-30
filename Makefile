@@ -20,6 +20,7 @@ KCSrc = src/KC
 ####CP Variables
 CP_objs= dailyReport.o monthlyReport.o report.o weeklyReport.o
 CPLib = inc/CP
+CPSrc = src/CP
 ####PV Variables
 PV_objs= OpenWeather.o OpenWeatherFactory.o
 PVLib = inc/PV
@@ -104,6 +105,16 @@ report.o : src/CP/report.cpp
 
 weeklyReport.o : src/CP/weeklyReport.cpp
 	$(CC) -o $@ -c $^ -I $(CPLib)
+	
+CPTests.o: tst/CP/CPTests.cpp
+	$(CC) -o $@ -c $^ -I $(CPLib) $(CPSrc) $(tstLib)
+
+CPTest_build: tst/Catch/tests-main.o CPTests.o
+	$(CC) -o run_CPtests $^
+	clean	
+	
+CPTest: CPTest_build
+	./run_CPtests
 
 ######PVDirectives
 OpenWeather.o : src/PV/OpenWeather.cpp
