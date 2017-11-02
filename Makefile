@@ -10,7 +10,7 @@ test_objs = tst/Catch/tests-main.o KCTests.o SATests.o PVTests.o JTTests.o
 test_exe = run_tests runSA_tests ruKC_tests runPV_tests runJT_tests
 tstLib = tst/Catch
 ####SA Variables
-SA_objs= population.o #customer.o PopulationConfiguration.o
+SA_objs= population.o customer.o PopulationConfiguration.o
 SALib = inc/SA
 SASrc = src/SA
 ####KC Variables
@@ -56,7 +56,7 @@ test_build: $(test_objs)
 tst/Catch/tests-main.o: tst/Catch/tests-main.cpp
 	$(CC) -o $@ -c $^ -I $(tstLib)
 ######SADirectives
-customer.o: src/SA/customer.o
+customer.o: src/SA/customer.cpp
 	$(CC) -o $@ -c $^ -I $(SALib)
 
 population.o: src/SA/population.cpp
@@ -105,14 +105,14 @@ report.o : src/CP/report.cpp
 
 weeklyReport.o : src/CP/weeklyReport.cpp
 	$(CC) -o $@ -c $^ -I $(CPLib)
-	
+
 CPTests.o: tst/CP/CPTests.cpp
 	$(CC) -o $@ -c $^ -I $(CPLib) $(CPSrc) $(tstLib)
 
 CPTest_build: tst/Catch/tests-main.o CPTests.o
 	$(CC) -o run_CPtests $^
 	clean	
-	
+
 CPTest: CPTest_build
 	./run_CPtests
 
@@ -135,14 +135,14 @@ PVTest: PVTest_build
 ######JTDirectives
 Ride.o : src/JT/Ride.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib)
-	
+
 Vendor.o : src/JT/Vendor.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib)
-	
+
 JTTests.o: tst/JT/JTTests.cpp	
 	$(CC) -o $@ -c $^ -I $(JTLib) $(JTSrc) $(tstLib)
-	
+
 JTTest_build: tst/Catch/tests-main.o JTTests.o
 	$(CC) -o run_JTTests $^
 	clean
-	
+
