@@ -1,1 +1,0 @@
-class diagram,sequence diagram,Gnatt time line
