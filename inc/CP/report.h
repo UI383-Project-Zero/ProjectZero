@@ -7,10 +7,21 @@
 
  #include <cstdlib>
  #include <vector>
+ #include <cstring>
  using namespace std;
 
  class report {
-    int satisfaction;
+  protected:
+    int avg_satisfaction;
+    double avg_money;
+    int avg_tickets;
+    int avg_hunger;
+    int avg_stamina;
+    int avg_nausea;
+    int avg_patience;
+    string most_favoritefood;
+    string least_favoritefood;
+    int avg_thrillseeking;
     vector<int> weather;
 
   private:
