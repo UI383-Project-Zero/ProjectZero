@@ -3,11 +3,11 @@ CC=g++
 
 mainLib=inc/
 
-all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs)
+all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs) $(JC_objs)
 
 ##Test Variables
-test_objs = tst/Catch/tests-main.o SATests.o PVTests.o # CPTests.o JTTests.o KCTests.o
-test_exe = run_tests runSA_tests ruKC_tests runPV_tests runJT_tests
+test_objs = tst/Catch/tests-main.o SATests.o PVTests.o # CPTests.o JTTests.o KCTests.o JCTests.o
+test_exe = run_tests runSA_tests ruKC_tests runPV_tests runJT_tests runJC_tests
 tstLib = tst/Catch
 ####SA Variables
 SA_objs= population.o customer.o PopulationConfiguration.o
@@ -29,6 +29,10 @@ PVSrc = src/PV
 JT_objs = Vendor.o Ride.o
 JTLib = inc/JT
 JTSrc = src/JT
+####JC Variables
+JC_objs = Attraction.o GameArea.o Games.h PatronQueue.h
+JCLib = inc/JC
+JCSrc = src/JC
 #############################Directives
 all: fss clean
 	./fss
@@ -145,3 +149,24 @@ JTTest_build: tst/Catch/tests-main.o JTTests.o
 JTTest: JTTest_build clean
 	./run_JTTests
 
+######JCDirectives
+Attraction.o : src/JC/Attraction.cpp
+	$(CC) -o $@ -c $^ -I $(JCLib)
+ 
+GameArea.o : src/JC/GameArea.cpp
+	$(CC) -o $@ -c $^ -I $(JCLib)
+
+Games.o : src/JC/Games.cpp
+	$(CC) -o $@ -c $^ -I $(JCLib)
+ 
+PatronQueue.o : src/JC/PatronQueue.cpp
+	$(CC) -o $@ -c $^ -I $(JCLib)
+	
+JCTests.o: tst/JC/JCTests.cpp	
+	$(CC) -o $@ -c $^ -I $(JCLib) -I $(JCSrc) -I $(tstLib)
+
+JCTest_build: tst/Catch/tests-main.o JCTests.o
+	$(CC) -o run_JCTests $^
+
+JCTest: JCTest_build clean
+	./run_JCTests
