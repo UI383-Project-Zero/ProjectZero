@@ -4,10 +4,12 @@
  * Summary: Factory for producing varying                                         
  *          weather report sources                                                
  ****************************************/
+#ifndef IWEATHERREPORT_H
+#define IWEATHERREPORT_H
 
 #include <iostream>
 #include <vector>
-//#include "IWeatherReport.h"
+#include "IWeatherReport.h"
 
 using namespace std;
 
@@ -21,3 +23,5 @@ class OpenWeather //: public IWeatherReport
  public:
   vector<int> generateReport();
 };
+
+#endif
