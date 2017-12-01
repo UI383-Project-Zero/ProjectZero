@@ -3,7 +3,7 @@
 
 /////////////Project Zero includes. Sort by contributor.
 ////////////KC
-#include "KCCrowdDirector.h"
+#include "KCAttractionRanker.h"
 #include "KCChooser.h"
 #include "KCCrowdDirector.h"
 ///////////////////////////////
@@ -18,7 +18,7 @@ int main(){
   std::cout << std::endl << "This is the part where we do set-up" << std::endl;
 
   ////////////////KC initial set-up
-  new KCCrowdDirector decisionMaker;
+  KCCrowdDirector decisionMaker;
   
   //////////////////////////////////////////Start
   //Presumably where the GUI takes over. Probably a large loop of some sort containing everything else.
@@ -49,7 +49,7 @@ int main(){
   //Update population (remove tired, spawn new)
   
   //Update attraction ranks
-  decisionmaker->mMasterList.updateStubLists();
+  decisionMaker.updateRides();
   
   //Update customers
   decisionMaker.updateCrowd();
