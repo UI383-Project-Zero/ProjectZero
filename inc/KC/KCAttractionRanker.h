@@ -123,7 +123,7 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		KCRideRanker();
 		~KCRideRanker();
 		
-		void buildStubList(Attraction*);
+		void buildStubList(Attraction*, int);
 		int rateAttraction(KCAttractionStub*);
 		
 		int getLeastThrilling();

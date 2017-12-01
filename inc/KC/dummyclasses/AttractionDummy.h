@@ -3,4 +3,5 @@ class Attraction{
   int mRideCost;
   int mRideSat;
   int mQueueLen;
+  string mRideType;
 };
