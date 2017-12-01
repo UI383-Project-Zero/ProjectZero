@@ -8,15 +8,20 @@
 #include "report.h"
 
 class dailyReport : public report{
-  int totalDays;
   int NumPeople;
   int Satisfaction;
+  int Tickets;
+  int Hunger;
+  int Stamina;
+  int Nausea;
+  int Patience;
   int VendorSales;
   int GameSales;
   int RideSales;
 
 private:
   void makeDailyReport();
+  people getPeopleStatistics(vector<SACustomer>);
 };
 
 #endif

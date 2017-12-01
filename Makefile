@@ -5,7 +5,7 @@ mainLib=inc/
 
 all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs) $(JC_objs)
 
-inc_all_libs = -I $(mainLib) -I $(SALib) -I $(KCLib) -I $(CPLib) -I $(PVLib) -I $(JTLib) -I $(JCLib) 
+inc_all_libs = -I $(mainLib) -I $(SALib) -I $(KCLib) -I $(CPLib) -I $(PVLib) -I $(JTLib) -I $(JCLib)
 ##Test Variables
 test_objs = tst/Catch/tests-main.o SATests.o PVTests.o # CPTests.o JTTests.o KCTests.o JCTests.o
 test_exe = run_tests runSA_tests ruKC_tests runPV_tests runJT_tests runJC_tests
@@ -93,7 +93,7 @@ KCTests.o: tst/KC/KCTests.cpp
 	$(CC) -o $@ -c $^ -I $(KCLib) -I $(KCSrc) -I $(tstLib)
 
 KCTest_build: tst/Catch/tests-main.o KCTests.o
-	$(CC) -o run_KCtests $^ 
+	$(CC) -o run_KCtests $^
 
 KCTest: KCTest_build clean
 	./run_KCtests
@@ -141,7 +141,7 @@ Ride.o : src/JT/Ride.cpp
 Vendor.o : src/JT/Vendor.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib)
 
-JTTests.o: tst/JT/JTTests.cpp	
+JTTests.o: tst/JT/JTTests.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib) -I $(JTSrc) -I $(tstLib)
 
 JTTest_build: tst/Catch/tests-main.o JTTests.o
@@ -163,7 +163,7 @@ Games.o : src/JC/Games.cpp
 PatronQueue.o : src/JC/PatronQueue.cpp
 	$(CC) -o $@ -c $^ -I $(JCLib)
 
-JCTests.o: tst/JC/JCTests.cpp	
+JCTests.o: tst/JC/JCTests.cpp
 	$(CC) -o $@ -c $^ -I $(JCLib) -I $(JCSrc) -I $(tstLib)
 
 JCTest_build: tst/Catch/tests-main.o JCTests.o

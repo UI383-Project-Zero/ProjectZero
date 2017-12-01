@@ -14,6 +14,8 @@
 
  struct people{
    int stats[7] = {0,0,0,0,0,0,0};
+   /* 0-satisfaction, 1-tickets, 2-hunger
+      3-stamina, 4-nausea, 5-patience*/
    double money = 0;
  };
 
