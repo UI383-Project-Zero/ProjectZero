@@ -109,14 +109,13 @@ void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount
   sortStubList();
 }
 
-int KCAttractionRankerMaster::rateAttraction(KCAttractionStub targetStub){
+int KCAttractionRankerMaster::rateAttraction(KCAttractionStub* targetStub){
   //std::cout << std::endl << "Rated this stub generically";
+  if((*targetStub).attrPtr->mRideCost == 0){
+    return (*targetStub).rating = ((*targetStub).attrPtr->mRideSat/(PRICE_WEIGHT*1)) - ((*targetStub).attrPtr->mQueueLen * QUEUE_LENGTH_MODIFIER);
+  }
 
-
-
-
-
-
+  return (*targetStub).rating = ((*targetStub).attrPtr->mRideSat/(PRICE_WEIGHT*(*targetStub).attrPtr->mRideCost) - ((*targetStub).attrPtr->mQueueLen * QUEUE_LENGTH_MODIFIER);
 }
 
 /*

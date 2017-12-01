@@ -17,7 +17,7 @@ class KCCoinStandRanker;
 	Holds that attractions current rating
 */
 
-struct KCAttractionStub {Attraction* attrPtr; int rating;};
+struct KCAttractionStub {Attraction* attrPtr; double rating;};
 //Operators for sorting
 bool operator> (const KCAttractionStub& lhs, const KCAttractionStub& rhs) {return lhs.rating > rhs.rating;}
 bool operator< (const KCAttractionStub& lhs, const KCAttractionStub& rhs) {return lhs.rating < rhs.rating;}
@@ -63,7 +63,7 @@ class KCAttractionRankerSuper {
 		//Assumes null-terminated array
 		virtual void buildStubList(Attraction*, int);
 		//Rates individual attraction
-		virtual int rateAttraction(KCAttractionStub);
+		virtual int rateAttraction(KCAttractionStub*);
 		//Calls rateAttraction on entire stub list
 		void rateAll();
 		//Calls sort on StubList
@@ -95,7 +95,7 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 		~KCAttractionRankerMaster();
 		
 		void buildStubList(Attraction*, int);
-		int rateAttraction(KCAttractionStub);
+		int rateAttraction(KCAttractionStub*);
 
 		void updateStubLists();
 		
