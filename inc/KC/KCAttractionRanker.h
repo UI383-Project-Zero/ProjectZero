@@ -73,6 +73,8 @@ class KCAttractionRankerSuper {
 	
 	Sorts rides based on queue-length/wait-time vs satisfaction vs cost
 	Cost estimation for games based on money-value of coin-cost. This may need to be estimated based on offerings of coin stands.
+
+	updateStubLists calls rateAll and sortStubList on the master list and on each sub-list.
 */
 
 class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
@@ -82,6 +84,8 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 		
 		void buildStubList(PlHAttractionList*);
 		int rateAttraction(KCAttractionStub*);
+
+		void updateStubLists();
 		
 		KCRideRanker *mRideList;
 		KCGameRanker *mGameList;
