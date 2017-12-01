@@ -62,7 +62,7 @@ class KCAttractionRankerSuper {
 	        ~KCAttractionRankerSuper();
 
 		//Assumes null-terminated array
-		virtual void buildStubList(Attraction*, int);
+		virtual void buildStubList(Attraction**, int);
 		//Rates individual attraction
 		virtual int rateAttraction(KCAttractionStub*);
 		//Calls rateAttraction on entire stub list
@@ -95,7 +95,7 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 		KCAttractionRankerMaster();
 		~KCAttractionRankerMaster();
 		
-		void buildStubList(Attraction*, int);
+		void buildStubList(Attraction**, int);
 		int rateAttraction(KCAttractionStub*);
 
 		void updateStubLists();
@@ -123,7 +123,7 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		KCRideRanker();
 		~KCRideRanker();
 		
-		void buildStubList(Attraction*, int);
+		void buildStubList(Attraction**, int);
 		int rateAttraction(KCAttractionStub*);
 		
 		int getLeastThrilling();
@@ -145,7 +145,7 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 		KCVendorRanker();
 		~KCVendorRanker();
 		
-		void buildStubList(Attraction*);
+		void buildStubList(Attraction**);
 		int rateAttraction(KCAttractionStub*);
 };
 
@@ -165,7 +165,7 @@ class KCGameRanker : protected KCAttractionRankerSuper{
 		KCGameRanker();
 		~KCGameRanker();
 		
-		void buildStubList(Attraction*);
+		void buildStubList(Attraction**);
 		int rateAttraction(KCAttractionStub*);
 		
 		KCCoinStandRanker *mCoinStandList;
@@ -196,7 +196,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 		KCCoinStandRanker();
 		~KCCoinStandRanker();
 		
-		void buildStubList(Attraction*);
+		void buildStubList(Attraction**);
 		int rateAttraction(KCAttractionStub*);
 
 		int getSmallest();

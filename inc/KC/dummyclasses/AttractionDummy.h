@@ -5,3 +5,9 @@ class Attraction{
   int mQueueLen;
   string mRideType;
 };
+
+class Ride : protected  Attraction{
+ public:
+  int mRideThrill;
+  int mRideNaus;
+};

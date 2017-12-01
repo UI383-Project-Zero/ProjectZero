@@ -96,7 +96,7 @@ KCAttractionRankerMaster::~KCAttractionRankerMaster(){
   //std::cout << std::endl << "Deleted Master Ranker";
 }
 
-void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount){
+void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int attrCount){
   //std::cout << std::endl << "Built attraction stub list";
   if(attrCount <= 0)
     return;
@@ -107,10 +107,12 @@ void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount
 
   delete mStubList;
   mStubList = new KCAttractionStub[mStubListSize];
-  mCheapest = attrList[0].mRideCost;
+
+  //initial cheapest
+  mCheapest = attrList[0]->mRideCost;
   for(int i =0; i < mStubListSize; i++){
     //Add to list
-    mStubList[i].attrPtr = &attrList[i];
+    mStubList[i].attrPtr = attrList[i];
     //Update cheapest
     if(mStubList[i].attrPtr->mRideCost < mCheapest)
       mCheapest = mStubList[i].attrPtr->mRideCost;
@@ -162,25 +164,38 @@ KCRideRanker::~KCRideRanker(){
   //std::cout << std::endl << "Deleted Ride Ranker";
 }
 
-void KCRideRanker::buildStubList(Attraction *attrList, int attrCount){
+void KCRideRanker::buildStubList(Attraction **attrList, int attrCount){
   //std::cout << std::endl << "Built ride stub list";
   if(attrCount <= 0)
     return;
-
   mStubListSize = attrCount;
+
+  delete mStubList;
   mStubList = new KCAttractionStub[mStubListSize];
-  //mCheapest = attrList[0].mRideCost;
-  
-  for(int i =0; i < mStubListSize; i++){
-    mStubList[i].attrPtr = &attrList[i];
-    if(mStubList[i].attrPtr->mRideCost < mCheapest)
-      mCheapest = mStubList[i].attrPtr->mRideCost;
-    rateAttraction(&mStubList[i]);
+
+  for(int i =0, int j = 0; j < mStubListSize; i++){
+    if(attrList[i].mRideType == "ride"){
+     mStubList[j].attrPtr = attrList[i];
+
+     if(j==0){
+       mCheapest = mStubList[j].attrPtr->mRideCost;
+       mLeastThrilling = mStubList[j].attrPtr->mRideThrill;
+       mLeastNauseating = mStublist[j].attrPtr->mRideNaus;
+     }
+     //Update cheap/least/least
+     if(mStubList[j].attrPtr->mRideCost < mCheapest)
+       mCheapest = mStubList[j].attrPtr->mRideCost;
+     if(mStubList[j].attrPtr->mRideThrill < mLeastThrilling)
+       mLeastThrilling = mStubList[j].attrPtr->mRideThrill;
+     if(mStubList[j].attrPtr->mRideNaus < mLeastNauseating)
+       mLeastNauseating = mStubList[j].attrPtr->mRideNaus;
+
+     //Initial rating
+    rateAttraction(&mStubList[j]);
+
+    }
   }
   sortStubList();
-}
-
-
 }
 
 int KCRideRanker::rateAttraction(KCAttractionStub *targetStub){
