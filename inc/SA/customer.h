@@ -1,13 +1,11 @@
-
 #ifndef SA_CUSTOMER_H_
 #define SA_CUSTOMER_H_
 
 #include <iostream>
 #include<cstring>
-using namespace std;
-class SACustomer
-{
-     private :
+
+class SACustomer {
+     protected :
      	  int mCustID;
           int mSatisfaction;
           double mMoney;
@@ -16,14 +14,15 @@ class SACustomer
           int mStamina;
           int mNausea;
           int mPatience;
-          string mFavoriteFood;
+          std::string mFavoriteFood;
           int mThrillSeeking;
 		  bool mBusy;
 		  bool mQueue;
+          double mTicketPrice;
      public :
-          SACustomer();
-          SACustomer(int);
-          ~SACustomer();
+          
+          virtual void setMTicketPrice(double) = 0;
+          virtual double getMTicketPrice() = 0;
 		  void setMCustID(int);
           int getMCustID();
           void setMSatisfaction(int);
