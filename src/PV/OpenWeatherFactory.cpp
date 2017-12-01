@@ -1,25 +1,28 @@
-/*****************************************                                       
- * Author: Patrick VanVorce - 2017                                                 
- * File: WeatherFactory.cpp                                                          
- * Summary: Factory for producing varying                                       
- *          weather report sources                                                 
+/*****************************************
+ * Author: Patrick VanVorce - 2017
+ * File: OpenWeatherFactory.cpp
+ * Summary: Factory for producing varying
+ *          weather report sources
  ****************************************/
-#ifndef WEATHERFACTORY_H
-#define WEATHERFACTORY_H
-#ifndef IWEATHERREPORT_H
-#define IWEATHERREPORT_H
+#include "OpenWeatherFactory.h"
+#include "OpenWeather.h"
+#include "IWeatherFactory.h"
 
-#include <iostream>
-#include"WeatherFactory.h"
-#include"IWeatherReport.h"
-
-using namespace std;
-
-IWeatherReport OpenWeatherFactory::getWeather(WeatherSources weatherSource)
+OpenWeatherFactory::OpenWeatherFactory()
 {
-  //creates a weather source
-  return NULL;
-};
 
-#endif
-#endif
+}
+
+IWeatherReport* OpenWeatherFactory::getWeather(int zipcode)
+{
+    return NULL;
+    //return new OpenWeather(zipcode);
+    /*switch(source)
+    {
+    case openWeather:
+        return new OpenWeather(zipcode);
+        break;
+    default:
+        return new OpenWeather(zipcode);
+    }*/
+}

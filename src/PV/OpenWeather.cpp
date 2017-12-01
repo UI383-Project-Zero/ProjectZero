@@ -1,32 +1,43 @@
-/*****************************************                                        
- * Author: Patrick VanVorce - 2017                                                 
- * File: WeatherFactory.h                                                          
- * Summary: Factory for producing varying                                          
- *          weather report sources                                                 
+/*****************************************
+ * Author: Patrick VanVorce - 2017
+ * File: OpenWeather.cpp
+ * Summary: Factory for producing varying
+ *          weather report sources
  ****************************************/
-#ifndef OPENWEATHER_H
-#define OPENWEATHER_H
-
-#include<iostream>
-#include<vector>
-#include"OpenWeather.h"
+#include "OpenWeather.h"
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
-vector<int> OpenWeather::generateReport() {
-  //Logic will go in here to return ratings of 
-  //weather dates.
-
-  vector<int> ratings;
-  return ratings;
+OpenWeather::OpenWeather()
+{
+    weatherData = "";
+    weatherRatings = {0};
 }
 
-void OpenWeather::getWeatherData() {
-  //Connects to OpenWeather API
+//Used by clients. This will get the zipcode
+//from the GUI singleton, and use the two
+//private functions in order return weatherRatings
+vector<int> OpenWeather::generateReport()
+{
+
+    return weatherRatings;
 }
 
-void OpenWeather::setRatings() {
-  //parses through weather data to set ratings
+//Uses this classes unique API to retrieve
+//and set weatherData that will be in JSON
+//or XML format.
+void OpenWeather::getWeatherData()
+{
+
 }
 
-#endif
+//Parses weatherData and sets weatherRatings
+//to have values between 1-3 for each day
+//where 1 is bad, 2 is okay, & 3 is good
+void OpenWeather::setRatings()
+{
+
+}
+
