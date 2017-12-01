@@ -10,6 +10,13 @@
  #include <string>
  using namespace std;
 
+ #include "includes.h"
+
+ struct people{
+   int stats[7] = {0,0,0,0,0,0,0};
+   double money = 0;
+ };
+
  class report {
   protected:
     int avg_satisfaction;
@@ -27,7 +34,7 @@
   private:
     void overallReport();
     void getWeather();
-    void getPeopleStatistics();
+    people getPeopleStatistics(vector<SACustomer>);
     void getRideStatistics();
     void getVendorStatistics();
     void getGameStatistics();

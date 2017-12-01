@@ -3,6 +3,9 @@
 #### Add notes here for urgent matters all group members should see
 Nothing (in particular) at the moment. Hell-week is upon us, and all is urgent. We reeeeeally need to meet up or exchange some emails at some point.
 
+## ISSUES TO ADDRESS
+#### Notes here for to-do items that are not urgent
+
 ## RECENT CHANGES
 #### Add notes here for recent changes that all group members should see. 
 #### Note: 2 or more spaces at end of line to create new-line. Two line breaks to create paragraphs.
