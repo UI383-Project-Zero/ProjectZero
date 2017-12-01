@@ -4,7 +4,7 @@
 
 // local includes
 #include "../../inc/CP/report.h"
-#include "printreport.h"
+#include "printreport.cpp"
 
 //global includes
 #include <iostream>

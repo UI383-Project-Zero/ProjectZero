@@ -19,6 +19,7 @@
 
  class report {
   protected:
+    int totaldays;
     int avg_satisfaction;
     double avg_money;
     int avg_tickets;
@@ -30,6 +31,12 @@
     string least_favoritefood;
     int avg_thrillseeking;
     vector<int> weather;
+
+    vector<int> dailyNumPeople;
+    vector<int> dailySatisfaction;
+    vector<int> dailyVendorSales;
+    vector<int> dailyGameSales;
+    vector<int> dailyRideSales;
 
   private:
     void overallReport();

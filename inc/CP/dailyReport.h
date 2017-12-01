@@ -8,12 +8,12 @@
 #include "report.h"
 
 class dailyReport : public report{
-  unsigned int totalDays;
-  unsigned int dailyNumPeople;
-  unsigned int dailySatisfaction;
-  unsigned int dailyVendorSales;
-  unsigned int dailyGameSales;
-  unsigned int dailyRideSales;
+  int totalDays;
+  int NumPeople;
+  int Satisfaction;
+  int VendorSales;
+  int GameSales;
+  int RideSales;
 
 private:
   void makeDailyReport();
