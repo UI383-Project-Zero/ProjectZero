@@ -19,6 +19,8 @@ public:
 	std::vector<SACustomer*> getMCustomers();
     void addMCustomers(SACustomer*);
     bool removeMCustomers(int);
+    int createPopulation();
+	void updateMCustomers(int);
     
     static int getNextId() {return ++nextId;}
 };
