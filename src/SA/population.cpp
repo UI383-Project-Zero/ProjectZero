@@ -9,7 +9,7 @@
 * @param 
 * @return 
 */
-SAPopulation::SAPopulation() {
+online SAPopulation::SAPopulation() {
   //std::cout << "SAPopulation() Constructor.\n";
 }
 
@@ -18,12 +18,36 @@ SAPopulation::SAPopulation() {
 *
 * @return 
 */
-SAPopulation* SAPopulation::getMUniqueInstance() {
+online SAPopulation* SAPopulation::getMUniqueInstance() {
 	if (mUniqueInstance == NULL) {
 		mUniqueInstance = new SAPopulation();
 		std::cout << "population instant created\n";
 	}
 	return mUniqueInstance;
+}
+/**
+* Create population.
+*
+* @param 
+* @return initial population
+*/
+int SAPopulation::createPopulation() {
+  std::cout << "SAPopulation::createPopulation()\n";
+  int initialSize = 0;
+  initialSize = SAPopulationConfig::generateSize();
+  return initialSize;
+}
+
+
+
+/**
+* Update customers.
+*
+* @param cust customer 
+* @return void
+*/
+void SAPopulation::updateMCustomers(int cust) {
+  //std::cout << "SAPopulation::updateMCustomers(int)\n";
 }
 
 /**
@@ -33,7 +57,7 @@ SAPopulation* SAPopulation::getMUniqueInstance() {
 * @return void
 */
 
-void SAPopulation::setMPopSize(int i) {
+online void SAPopulation::setMPopSize(int i) {
 	//std::cout << "SACustomer::setMPopSize(int)\n";
 	mPopSize = i;
 }
@@ -43,7 +67,7 @@ void SAPopulation::setMPopSize(int i) {
 *
 * @return population size
 */
-int SAPopulation::getMPopSize() {
+online int SAPopulation::getMPopSize() {
 	//std::cout << "SACustomer::getMPopSize()\n";
 	return 	mPopSize;
 }
@@ -54,7 +78,7 @@ int SAPopulation::getMPopSize() {
 * @param x to be customers
 * @return void
 */
-void SAPopulation::setMCustomers(std::vector<SACustomer*> x) {
+online void SAPopulation::setMCustomers(std::vector<SACustomer*> x) {
 	//std::cout << "SAPopulation::setMCustomers(vector<SACustomer>)\n";
 	mCustomers=x;
 }
@@ -64,7 +88,7 @@ void SAPopulation::setMCustomers(std::vector<SACustomer*> x) {
 * 
 * @return customers.
 */
-std::vector<SACustomer*> SAPopulation::getMCustomers() {
+online std::vector<SACustomer*> SAPopulation::getMCustomers() {
 	//cout << "SAPopulation::getMCustomers()";
 	return mCustomers;
 }
@@ -88,7 +112,7 @@ std::vector<SACustomer*> SAPopulation::getMCustomers() {
 * @param cust customer to be added in population
 * @return void
 */
-void SAPopulation::addMCustomers(SACustomer* cust) {
+online void SAPopulation::addMCustomers(SACustomer* cust) {
   //std::cout << "SAPopulation::addMCustomers(SACustomer)\n";
   mCustomers.push_back (cust);
 }
