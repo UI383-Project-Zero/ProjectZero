@@ -9,19 +9,20 @@
 
 /*
 	Attraction Stub structure.
-	Holds a pointer to a specific traction
+	Holds a pointer to a specific attraction
 	Holds that attractions current rating
 */
 
-struct KCAttractionStub {Attraction* attrPtr; double rating;};
-//Operators for sorting
-bool operator> (const KCAttractionStub& lhs, const KCAttractionStub& rhs) {return lhs.rating > rhs.rating;}
-bool operator< (const KCAttractionStub& lhs, const KCAttractionStub& rhs) {return lhs.rating < rhs.rating;}
-//Stub comparison functor for descending sort
-bool sortByHighRating(KCAttractionStub highrating, KCAttractionStub lowrating)
-{return highrating > lowrating;}
-
-
+template<typename pType>
+struct KCAttractionStub{
+  pType* attrPtr;
+  double rating;
+  //Operators for sorting
+  bool operator> (const KCAttractionStub<pType>& rhs) {return rating > rhs.rating;}
+  bool operator< (const KCAttractionStub<pType>& rhs) {return rating < rhs.rating;}
+  bool sortByHighRating(KCAttractionStub<pType> highrating, KCAttractionStub<pType> lowrating)
+  {return highrating > lowrating;}
+};
 
 /*
 	Attraction Ranker super class
@@ -42,15 +43,17 @@ bool sortByHighRating(KCAttractionStub highrating, KCAttractionStub lowrating)
 	-Fetch nth-ranked stub (if top attraction does not meet requirements)
 	-Re-rate an individual ride on request
 	-Re-sort an individual ride on request
-	---Insertion sort on a single stub saves time over full sort
+	---Sort on a single stub saves time over full sort
 	
 	Member variables track relevant minimum 
 	-If a customer can not afford any attraction in the park, decision-process shortcuts
 */
+
+template <typename stubType>
 class KCAttractionRankerSuper {
 	protected:
 		int mCheapest;
-		KCAttractionStub * mStubList;
+		stubType * mStubList;
 		int mStubListSize;
 	public:
 		KCAttractionRankerSuper();
@@ -59,17 +62,17 @@ class KCAttractionRankerSuper {
 		//Assumes null-terminated array
 		virtual void buildStubList(Attraction**, int);
 		//Rates individual attraction
-		virtual int rateAttraction(KCAttractionStub*);
+		virtual int rateAttraction(stubType*);
 		//Calls rateAttraction on entire stub list
 		void rateAll();
 		//Calls sort on StubList
 		void sortStubList();
 		//Sorts single stub into new location in list
-		void sortStub(KCAttractionStub);
+		void sortStub(stubType);
 		
 		int getCheapest();
-		KCAttractionStub* getTopAttraction();
-		KCAttractionStub* getRankedAttraction(int);
+		stubType* getTopAttraction();
+		stubType* getRankedAttraction(int);
 };
 
 /*
@@ -82,7 +85,7 @@ class KCAttractionRankerSuper {
 	Member variables track minimum thrill and minimum nausea. Shortcuts decision process if no compatible rides are available
 */
 
-class KCRideRanker : protected KCAttractionRankerSuper{
+class KCRideRanker : protected KCAttractionRankerSuper<KCAttractionStub<Ride> >{
 	private:
 		int mLeastThrilling;
 		int mLeastNauseating;
@@ -92,7 +95,7 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		
 		void buildStubList(Attraction**, int);
 		void buildStubList(Ride**, int);
-		int rateAttraction(KCAttractionStub*);
+		int rateAttraction(KCAttractionStub<Ride>*);
 		
 		int getLeastThrilling();
 		int getLeastNauseating();
@@ -108,13 +111,13 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 	mCheapest is the price of the cheapest item for sale
 */
 
-class KCVendorRanker : protected KCAttractionRankerSuper{
+class KCVendorRanker : protected KCAttractionRankerSuper<KCAttractionStub<Vendor> >{
 	public:
 		KCVendorRanker();
 		~KCVendorRanker();
 		
 		void buildStubList(Attraction**, int);
-		int rateAttraction(KCAttractionStub*);
+		int rateAttraction(KCAttractionStub<Vendor>*);
 };
 
 /*
@@ -135,7 +138,7 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 	Prevents purchases if unable to afford cheapest bundle or if unable to afford enough for the cheapest game.
 */
 
-class KCCoinStandRanker : protected KCAttractionRankerSuper{
+class KCCoinStandRanker : protected KCAttractionRankerSuper<KCAttractionStub<CoinStand> >{
 	private:
 		int mSmallest;
 	public:
@@ -143,7 +146,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 		~KCCoinStandRanker();
 		
 		void buildStubList(Attraction**);
-		int rateAttraction(KCAttractionStub*);
+		int rateAttraction(KCAttractionStub<CoinStand>*);
 
 		int getSmallest();
 };
@@ -159,7 +162,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 	mCoinStandList holds the list of coin venders. 
 */
 
-class KCGameRanker : protected KCAttractionRankerSuper{
+class KCGameRanker : protected KCAttractionRankerSuper <KCAttractionStub<Game> >{
 	public:
 		KCGameRanker();
 		~KCGameRanker();
@@ -167,7 +170,7 @@ class KCGameRanker : protected KCAttractionRankerSuper{
 		void buildStubList(Attraction**, int);
 		void buildStubList(Attraction**, int, int);
 		
-		int rateAttraction(KCAttractionStub*);
+		int rateAttraction(KCAttractionStub<Game>*);
 		
 		KCCoinStandRanker *mCoinStandList;
 };
@@ -186,14 +189,14 @@ class KCGameRanker : protected KCAttractionRankerSuper{
 	updateStubLists calls rateAll and sortStubList on the master list and on each sub-list.
 */
 
-class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
+class KCAttractionRankerMaster : protected KCAttractionRankerSuper <KCAttractionStub<Attraction> >{
 	public:
 		KCAttractionRankerMaster();
 		~KCAttractionRankerMaster();
 		
 		void buildStubList(Attraction**, int);
 		void buildStubList(Attraction**, int, int, int, int);
-		int rateAttraction(KCAttractionStub*);
+		int rateAttraction(KCAttractionStub<Attraction>*);
 
 		void updateStubLists();
 		
