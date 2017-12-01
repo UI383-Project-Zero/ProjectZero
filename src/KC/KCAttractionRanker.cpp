@@ -104,7 +104,8 @@ void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount
 
   int rideCount,vendorCount,gameCount,coinStandCount;
   rideCount = vendorCount = gameCount = coinStandCount = 0;
-  
+
+  delete mStubList;
   mStubList = new KCAttractionStub[mStubListSize];
   mCheapest = attrList[0].mRideCost;
   for(int i =0; i < mStubListSize; i++){
@@ -117,10 +118,20 @@ void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount
     rateAttraction(&mStubList[i]);
 
     //Count type
-    
-    
+    if(mStubList[i].attrPtr->mRideType == "ride")
+      rideCount++;
+    else if(mStubList[i].attrPtr->mRideType == "vendor")
+      venderCount++;
+    else if(mStubList[i].attrPtr->mRideType == "game")
+      gameCount++;
+    else if(mStubList[i].attrPtr->mRideType == "coin stand")
+      coinStandCount++;
   }
   sortStubList();
+
+  mRideList.buildStubList(attrList, rideCount);
+  mGameList.buildStubList(attrList, gameCount, coinStandCount);
+  mVendorList.buildStubList(attrList, vendorCount);
 }
 
 //Current rating algorithm:

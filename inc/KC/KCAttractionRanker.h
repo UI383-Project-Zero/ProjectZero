@@ -100,9 +100,9 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 
 		void updateStubLists();
 		
-		KCRideRanker *mRideList;
-		KCGameRanker *mGameList;
-		KCVendorRanker *mVendorList;
+		KCRideRanker mRideList;
+		KCGameRanker mGameList;
+		KCVendorRanker mVendorList;
 };
 
 /*
