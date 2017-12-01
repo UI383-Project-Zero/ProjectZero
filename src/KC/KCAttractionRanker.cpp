@@ -1,6 +1,8 @@
 #include <iostream>
+#include <algorithm>
 
 #include "KCAttractionRanker.h"
+
 
 /*
   Super Class Methods
@@ -8,23 +10,37 @@
 
 
 KCAttractionRankerSuper::KCAttractionRankerSuper(){
-  std::cout << std::endl << "Ranker Super Created";
+  //std::cout << std::endl << "Ranker Super Created";
 }
 
 KCAttractionRankerSuper::~KCAttractionRankerSuper(){
-  std::cout << std::endl << "Ranker Super Deleted";
+  //std::cout << std::endl << "Ranker Super Deleted";
+}
+
+virtual void KCAttractionRankerSuper::buildStubList(Attraction* attrList){
+  std::cout << std::endl << "Error. Super Ranker doesn't build lists.";
+}
+
+virtual void KCAttractionRankerSuper::rateAttraction(KCAttractionStub targetStub){
+  std::cout << std::cendl << "Error. Super Ranker doesn't rate attractions.";
 }
 
 void KCAttractionRankerSuper::rateAll(){
-  std::cout << std::endl << "Rated all stubs";
+  //std::cout << std::endl << "Rated all stubs";
+  for(int i= 0; i<mStubListSize; i++)
+    rateAttraction(mStubList[i]);
 }
 
 void KCAttractionRankerSuper::sortStubList(){
-  std::cout << std::endl << "Sorted full list";
+  //std::cout << std::endl << "Sorted full list";
+  sort(mStubList, mStubList + mStubListSize, sortByHighRating);
 }
 
 void KCAttractionRankerSuper::sortStub(KCAttractionStub aStub){
-  std::cout << std::endl << "Moved stub to right spot";
+  //std::cout << std::endl << "Moved stub to right spot";
+  //Locates aStub in list array (by comparing attraction pointer)
+  //Uses adapted bubblesort to move element to new position
+  /////Sourced from  
 }
 
 int KCAttractionRankerSuper::getCheapest(){
@@ -38,6 +54,7 @@ KCAttractionStub KCAttractionRankerSuper::getTopAttraction(){
 KCAttractionStub KCAttractionRankerSuper::getRankedAttraction(int place){
   std::cout << std::endl << "Got " << place << " ranked stub";
 }
+
 
 /*
   Master Ranker methods

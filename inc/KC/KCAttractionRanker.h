@@ -4,8 +4,7 @@
 class SAPopulation;
 class SACustomer;
 
-class PlHAttraction;
-class PlHAttractionList;
+class Attraction;
 
 class KCRideRanker;
 class KCGameRanker;
@@ -18,7 +17,13 @@ class KCCoinStandRanker;
 	Holds that attractions current rating
 */
 
-struct KCAttractionStub {PlHAttraction* attrPtr; int rating;};
+struct KCAttractionStub {Attraction* attrPtr; int rating;};
+//Operators for sorting
+KCAttractionStub operator<(const KCAttractionStub& rhs){return rating < rhs.rating;}
+KCAttractionStub operator>(const KCAttractionStub& rhs){return rating > rhs.rating;}
+//Stub comparison functor for descending sort
+bool sortByHighRating(KCAttractionStub highrating, KCAttractionStub lowrating)
+{return highrating > lowrating;}
 
 /*
 	Attraction Ranker super class
@@ -48,15 +53,20 @@ class KCAttractionRankerSuper {
 	protected:
 		int mCheapest;
 		KCAttractionStub * mStubList;
-		
+		int mStubListSize;
 	public:
 		KCAttractionRankerSuper();
-		virtual ~KCAttractionRankerSuper();
-		
-		void buildStubList(PlHAttractionList*);
-		int rateAttraction(KCAttractionStub*);
+	        ~KCAttractionRankerSuper();
+
+		//Assumes null-terminated array
+		virtual void buildStubList(Attraction*);
+		//Rates individual attraction
+		virtual int rateAttraction(KCAttractionStub);
+		//Calls rateAttraction on entire stub list
 		void rateAll();
+		//Calls sort on StubList
 		void sortStubList();
+		//Sorts single stub into new location in list
 		void sortStub(KCAttractionStub);
 		
 		int getCheapest();
