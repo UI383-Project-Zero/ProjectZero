@@ -20,25 +20,36 @@ int main(){
   ////////////////KC initial set-up
   new KCCrowdDirector decisionMaker;
   
-  ///////////////////////Start
+  //////////////////////////////////////////Start
   //Presumably where the GUI takes over. Probably a large loop of some sort containing everything else.
   std::cout << std::endl << "This is the part where we start doing stuff" << std::endl;
 
-  //////////////////////Run simulation
+  //////////////////////////////////Run simulation
   //Begin running simulation
 
   ////////////////Simulation set-up
   //Initial set-up for everything not already configured by GUI. Resets as needed
+  
+  //Get master attraction list (assumes that array of all attractions exists
+  //decisionMaker.getRides(##ridelist##);
 
-  ////////////////Simulation loop start
+  
+  ////////////////////////////Simulation loop start
   //Beginning of loop. Repeats and updates every day
   //Reset objects or create new as needed
+  //Update weather
+  //Generate new population
 
-  ////////////////Day loop start
+  //Get new population (assumes new population object created daily)
+  //decisionMaker.getPopulation(##populationname##);
+  
+  //////////////////////////Day loop start
   //Beginning of day loop. Repeats at beginning of each tick
 
+  //Update population (remove tired, spawn new)
+  
   //Update attraction ranks
-  decisionmaker->mMasterList.
+  decisionmaker->mMasterList.updateStubLists();
   
   //Update customers
   decisionMaker.updateCrowd();
