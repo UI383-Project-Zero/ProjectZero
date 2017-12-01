@@ -1,21 +1,22 @@
-/*****************************************                                       
- * Author: Patrick VanVorce - 2017                                                 
- * File: WeatherFactory.h                                                          
- * Summary: Factory for producing varying                                      
- *          weather report sources                                                 
+/*****************************************
+ * Author: Patrick VanVorce - 2017
+ * File: OpenWeatherFactory.h
+ * Summary: Factory for producing varying
+ *          weather report sources
  ****************************************/
-#ifndef WEATHERFACTORY_H
-#define WEATHERFACTORY_H
+
+#ifndef OPENWEATHERFACTORY_H
+#define OPENWEATHERFACTORY_H
 
 #include <iostream>
-#include "WeatherFactory.h"
+#include "IWeatherFactory.h"
+#include "IWeatherReport.h"
 
-using namespace std;
-
-class OpenWeatherFactory //: public WeatherFactory
+class OpenWeatherFactory: public IWeatherFactory
 {
- public:
-  IWeatherReport getWeather(WeatherSources source)();
+public:
+    OpenWeatherFactory();
+    IWeatherReport* getWeather(int zipcode);
 };
 
-#endif
+#endif // OPENWEATHERFACTORY_H

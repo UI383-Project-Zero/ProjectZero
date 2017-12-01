@@ -1,11 +1,11 @@
-/*****************************************                                         
- * Author: Patrick VanVorce - 2017                                                 
- * File: WeatherFactory.h                                                          
- * Summary: Factory for producing varying                                         
- *          weather report sources                                                
+/*****************************************
+ * Author: Patrick VanVorce - 2017
+ * File: OpenWeather.h
+ * Summary: Factory for producing
+ *          weather report source
  ****************************************/
-#ifndef IWEATHERREPORT_H
-#define IWEATHERREPORT_H
+#ifndef OPENWEATHER_H
+#define OPENWEATHER_H
 
 #include <iostream>
 #include <vector>
@@ -13,15 +13,14 @@
 
 using namespace std;
 
-class OpenWeather //: public IWeatherReport
+class OpenWeather : public IWeatherReport
 {
-  
-
-  void getWeatherData();
-  void setRatings();
-
- public:
-  vector<int> generateReport();
+private:
+    void getWeatherData();
+    void setRatings();
+public:
+    OpenWeather();
+    vector<int> generateReport();
 };
 
-#endif
+#endif // OPENWEATHER_H
