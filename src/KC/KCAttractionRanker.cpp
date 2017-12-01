@@ -40,7 +40,7 @@ void KCAttractionRankerSuper::sortStub(KCAttractionStub aStub){
   //std::cout << std::endl << "Moved stub to right spot";
   //Locates aStub in list array (by comparing attraction pointer)
   //Uses adapted bubblesort to move element to new position
-  /////Sourced from  
+  /////Sourced from  https://stackoverflow.com/questions/13776531/how-to-re-sort-already-sorted-array-where-one-element-updates
 }
 
 int KCAttractionRankerSuper::getCheapest(){
