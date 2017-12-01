@@ -4,29 +4,21 @@
 
 #include "KCAttractionRanker.h"
 
-
-/*
-  Super Class Methods
- */
-
+//////////////////////////////////////////////////Super Class Methods
 
 KCAttractionRankerSuper::KCAttractionRankerSuper(){
-  //std::cout << std::endl << "Ranker Super Created";
 }
 
 KCAttractionRankerSuper::~KCAttractionRankerSuper(){
-  //std::cout << std::endl << "Ranker Super Deleted";
 }
 
 
 void KCAttractionRankerSuper::rateAll(){
-  //std::cout << std::endl << "Rated all stubs";
   for(int i= 0; i<mStubListSize; i++)
     rateAttraction(&mStubList[i]);
 }
 
 void KCAttractionRankerSuper::sortStubList(){
-  //std::cout << std::endl << "Sorted full list";
   std::sort(mStubList, mStubList + mStubListSize, sortByHighRating);
 }
 
@@ -71,19 +63,17 @@ int KCAttractionRankerSuper::getCheapest(){
 }
 
 KCAttractionStub* KCAttractionRankerSuper::getTopAttraction(){
-  //std::cout << std::endl << "Got top attraction stub";
   return &mStubList[0];
 }
 
 KCAttractionStub* KCAttractionRankerSuper::getRankedAttraction(int place){
-  //std::cout << std::endl << "Got " << place << " ranked stub";
   if(place < mStubListSize)
     return &mStubList[place];
   else
     return NULL;
 }
 
-
+///////////////////////////////////////////////////
 /*
   Master Ranker methods
  */
@@ -96,14 +86,20 @@ KCAttractionRankerMaster::~KCAttractionRankerMaster(){
   //std::cout << std::endl << "Deleted Master Ranker";
 }
 
+void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int rideCount, int vendorCount, int gameCount, int coinStandCount){
+  buildStubList(attrList, rideCount + vendorCount + gameCount);
+  mRideList.buildStubList(attrList, rideCount);
+  mVendorList.buildStubList(attrList+rideCount, vendorCount);
+  mGameList.buildStubList(attrList+rideCount+vendorCount, gameCount, coinStandCount);
+}
+
+
+
 void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int attrCount){
   //std::cout << std::endl << "Built attraction stub list";
   if(attrCount <= 0)
     return;
   mStubListSize = attrCount;
-
-  int rideCount,vendorCount,gameCount,coinStandCount;
-  rideCount = vendorCount = gameCount = coinStandCount = 0;
 
   delete mStubList;
   mStubList = new KCAttractionStub[mStubListSize];
@@ -118,22 +114,8 @@ void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int attrCoun
       mCheapest = mStubList[i].attrPtr->mRideCost;
     //Initial rating
     rateAttraction(&mStubList[i]);
-
-    //Count type
-    if(mStubList[i].attrPtr->mRideType == "ride")
-      rideCount++;
-    else if(mStubList[i].attrPtr->mRideType == "vendor")
-      venderCount++;
-    else if(mStubList[i].attrPtr->mRideType == "game")
-      gameCount++;
-    else if(mStubList[i].attrPtr->mRideType == "coin stand")
-      coinStandCount++;
   }
   sortStubList();
-
-  mRideList.buildStubList(attrList, rideCount);
-  mGameList.buildStubList(attrList, gameCount, coinStandCount);
-  mVendorList.buildStubList(attrList, vendorCount);
 }
 
 //Current rating algorithm:
@@ -151,7 +133,6 @@ int KCAttractionRankerMaster::rateAttraction(KCAttractionStub* targetStub){
 }
 
 
-
 /*
   Ride Ranker methods
  */
@@ -165,6 +146,10 @@ KCRideRanker::~KCRideRanker(){
 }
 
 void KCRideRanker::buildStubList(Attraction **attrList, int attrCount){
+  buildStubList(
+
+
+}
   //std::cout << std::endl << "Built ride stub list";
   if(attrCount <= 0)
     return;
@@ -173,7 +158,7 @@ void KCRideRanker::buildStubList(Attraction **attrList, int attrCount){
   delete mStubList;
   mStubList = new KCAttractionStub[mStubListSize];
 
-  for(int i =0, int j = 0; j < mStubListSize; i++){
+  for(int i =0, j = 0; j < mStubListSize; i++){
     if(attrList[i].mRideType == "ride"){
      mStubList[j].attrPtr = attrList[i];
 

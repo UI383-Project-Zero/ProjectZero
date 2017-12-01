@@ -6,11 +6,6 @@
 #include  "dummyclasses/AttractionDummy.h"
 #include "KCDecisionWeights.h"
 
-class KCRideRanker;
-class KCGameRanker;
-class KCVendorRanker;
-class KCCoinStandRanker;
-
 
 /*
 	Attraction Stub structure.
@@ -78,34 +73,6 @@ class KCAttractionRankerSuper {
 };
 
 /*
-	Attraction ranker Master class
-	Singleton pattern
-	Maintains the master list of all prime-level attractions.
-	In the base implementation context, this means all rides, vendors, and games, but not coin stands. These are the attractions that visitors decide to visit.
-	mRideList, mGameList, and mVendorList hold the ride, game, and vendor lists so that they are interacted with as a subset of the main ranked list.
-	
-	Sorts rides based on queue-length/wait-time vs satisfaction vs cost
-	Cost estimation for games based on money-value of coin-cost. This may need to be estimated based on offerings of coin stands.
-
-	updateStubLists calls rateAll and sortStubList on the master list and on each sub-list.
-*/
-
-class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
-	public:
-		KCAttractionRankerMaster();
-		~KCAttractionRankerMaster();
-		
-		void buildStubList(Attraction**, int);
-		int rateAttraction(KCAttractionStub*);
-
-		void updateStubLists();
-		
-		KCRideRanker mRideList;
-		KCGameRanker mGameList;
-		KCVendorRanker mVendorList;
-};
-
-/*
 	Ride Ranker class
 	Maintains list of Rides. 
 	
@@ -124,6 +91,7 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		~KCRideRanker();
 		
 		void buildStubList(Attraction**, int);
+		void buildStubList(Ride**, int);
 		int rateAttraction(KCAttractionStub*);
 		
 		int getLeastThrilling();
@@ -145,30 +113,8 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 		KCVendorRanker();
 		~KCVendorRanker();
 		
-		void buildStubList(Attraction**);
+		void buildStubList(Attraction**, int);
 		int rateAttraction(KCAttractionStub*);
-};
-
-/*
-	Game Ranker class
-	Maintains list of Games.
-	
-	Sorts based on queue/wait vs satisfaction vs cost
-	Queue/wait based solely on game wait times.
-	Cost based on direct coin-cost of games.
-	
-	mCoinStandList holds the list of coin venders. 
-*/
-
-class KCGameRanker : protected KCAttractionRankerSuper{
-	public:
-		KCGameRanker();
-		~KCGameRanker();
-		
-		void buildStubList(Attraction**);
-		int rateAttraction(KCAttractionStub*);
-		
-		KCCoinStandRanker *mCoinStandList;
 };
 
 /*
@@ -200,6 +146,60 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 		int rateAttraction(KCAttractionStub*);
 
 		int getSmallest();
+};
+
+/*
+	Game Ranker class
+	Maintains list of Games.
+	
+	Sorts based on queue/wait vs satisfaction vs cost
+	Queue/wait based solely on game wait times.
+	Cost based on direct coin-cost of games.
+	
+	mCoinStandList holds the list of coin venders. 
+*/
+
+class KCGameRanker : protected KCAttractionRankerSuper{
+	public:
+		KCGameRanker();
+		~KCGameRanker();
+		
+		void buildStubList(Attraction**, int);
+		void buildStubList(Attraction**, int, int);
+		
+		int rateAttraction(KCAttractionStub*);
+		
+		KCCoinStandRanker *mCoinStandList;
+};
+
+
+/*
+	Attraction ranker Master class
+	Singleton pattern
+	Maintains the master list of all prime-level attractions.
+	In the base implementation context, this means all rides, vendors, and games, but not coin stands. These are the attractions that visitors decide to visit.
+	mRideList, mGameList, and mVendorList hold the ride, game, and vendor lists so that they are interacted with as a subset of the main ranked list.
+	
+	Sorts rides based on queue-length/wait-time vs satisfaction vs cost
+	Cost estimation for games based on money-value of coin-cost. This may need to be estimated based on offerings of coin stands.
+
+	updateStubLists calls rateAll and sortStubList on the master list and on each sub-list.
+*/
+
+class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
+	public:
+		KCAttractionRankerMaster();
+		~KCAttractionRankerMaster();
+		
+		void buildStubList(Attraction**, int);
+		void buildStubList(Attraction**, int, int, int, int);
+		int rateAttraction(KCAttractionStub*);
+
+		void updateStubLists();
+		
+		KCRideRanker mRideList;
+		KCGameRanker mGameList;
+		KCVendorRanker mVendorList;
 };
 
 #endif //KCATTRACTIONRANKER_H
