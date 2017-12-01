@@ -21,7 +21,7 @@ KCAttractionRankerSuper::~KCAttractionRankerSuper(){
 void KCAttractionRankerSuper::rateAll(){
   //std::cout << std::endl << "Rated all stubs";
   for(int i= 0; i<mStubListSize; i++)
-    rateAttraction(mStubList[i]);
+    rateAttraction(&mStubList[i]);
 }
 
 void KCAttractionRankerSuper::sortStubList(){
@@ -104,7 +104,7 @@ void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount
     mStubList[i].attrPtr = &attrList[i];
     if(mStubList[i].attrPtr->mRideCost < mCheapest)
       mCheapest = mStubList[i].attrPtr->mRideCost;
-    rateAttraction(mStubList[i]);
+    rateAttraction(&mStubList[i]);
   }
   sortStubList();
 }
@@ -115,7 +115,7 @@ int KCAttractionRankerMaster::rateAttraction(KCAttractionStub* targetStub){
     return (*targetStub).rating = ((*targetStub).attrPtr->mRideSat/(PRICE_WEIGHT*1)) - ((*targetStub).attrPtr->mQueueLen * QUEUE_LENGTH_MODIFIER);
   }
 
-  return (*targetStub).rating = ((*targetStub).attrPtr->mRideSat/(PRICE_WEIGHT*(*targetStub).attrPtr->mRideCost) - ((*targetStub).attrPtr->mQueueLen * QUEUE_LENGTH_MODIFIER);
+  return (*targetStub).rating = ((*targetStub).attrPtr->mRideSat/(PRICE_WEIGHT*(*targetStub).attrPtr->mRideCost)) - ((*targetStub).attrPtr->mQueueLen * QUEUE_LENGTH_MODIFIER);
 }
 
 /*

@@ -4,6 +4,7 @@
 
 //Replace with appropriate header when other module finalized
 #include  "dummyclasses/AttractionDummy.h"
+#include "KCDecisionWeights.h"
 
 class KCRideRanker;
 class KCGameRanker;
