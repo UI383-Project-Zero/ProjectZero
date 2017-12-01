@@ -10,13 +10,13 @@
 /*This is the header file for the Attraction Superclass, where all of the attractions in the park, games, rides, and vendors will be defined*/
 class Attraction {
 	private:
-		constructFromConfigFile() //Will create the queue of attractions from the input from the GUI.
-		removeFromQueue()
-		takePayment() //Removes money from the wallet of the Patron, depending on what attraction they went to.
-		effectPayment()
-		calculateProfits() //Uses money gained from each Patron and the operating cost of each attraction to generate profits for each attraction.
-		unflagPatron()
-		getLineLength()
+		void constructFromConfigFile(); //Will create the queue of attractions from the input from the GUI.
+		void removeFromQueue();
+		void takePayment(); //Removes money from the wallet of the Patron, depending on what attraction they went to.
+		void effectPayment();
+		void calculateProfits(); //Uses money gained from each Patron and the operating cost of each attraction to generate profits for each attraction.
+		void unflagPatron();
+		void getLineLength();
 	
 	public:
 		string name; //The name of each attraction(games, vendors, rides)
