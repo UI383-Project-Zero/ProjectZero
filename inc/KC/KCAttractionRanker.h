@@ -1,10 +1,8 @@
 #ifndef KCATTRACTIONRANKER_H
 #define KCATTRACTIONRANKER_H
 
-class SAPopulation;
-class SACustomer;
-
-class Attraction;
+#include  "dummyclasses/AttractionDummy.h"
+//class Attraction;
 
 class KCRideRanker;
 class KCGameRanker;
@@ -72,8 +70,8 @@ class KCAttractionRankerSuper {
 		void sortStub(KCAttractionStub);
 		
 		int getCheapest();
-		KCAttractionStub getTopAttraction();
-		KCAttractionStub getRankedAttraction(int);
+		KCAttractionStub* getTopAttraction();
+		KCAttractionStub* getRankedAttraction(int);
 };
 
 /*
@@ -94,8 +92,8 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 		KCAttractionRankerMaster();
 		~KCAttractionRankerMaster();
 		
-		void buildStubList(PlHAttractionList*);
-		int rateAttraction(KCAttractionStub*);
+		void buildStubList(Attraction*, int);
+		int rateAttraction(KCAttractionStub);
 
 		void updateStubLists();
 		
@@ -122,7 +120,7 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		KCRideRanker();
 		~KCRideRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 		
 		int getLeastThrilling();
@@ -144,7 +142,7 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 		KCVendorRanker();
 		~KCVendorRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 };
 
@@ -164,7 +162,7 @@ class KCGameRanker : protected KCAttractionRankerSuper{
 		KCGameRanker();
 		~KCGameRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 		
 		KCCoinStandRanker *mCoinStandList;
@@ -195,7 +193,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 		KCCoinStandRanker();
 		~KCCoinStandRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 
 		int getSmallest();

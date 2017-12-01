@@ -17,13 +17,6 @@ KCAttractionRankerSuper::~KCAttractionRankerSuper(){
   //std::cout << std::endl << "Ranker Super Deleted";
 }
 
-virtual void KCAttractionRankerSuper::buildStubList(Attraction* attrList, int attrCount){
-  std::cout << std::endl << "Error. Super Ranker doesn't build lists.";
-}
-
-virtual void KCAttractionRankerSuper::rateAttraction(KCAttractionStub targetStub){
-  std::cout << std::cendl << "Error. Super Ranker doesn't rate attractions.";
-}
 
 void KCAttractionRankerSuper::rateAll(){
   //std::cout << std::endl << "Rated all stubs";
@@ -33,7 +26,7 @@ void KCAttractionRankerSuper::rateAll(){
 
 void KCAttractionRankerSuper::sortStubList(){
   //std::cout << std::endl << "Sorted full list";
-  sort(mStubList, mStubList + mStubListSize, sortByHighRating);
+  std::sort(mStubList, mStubList + mStubListSize, sortByHighRating);
 }
 
 void KCAttractionRankerSuper::sortStub(KCAttractionStub aStub){
@@ -44,11 +37,11 @@ void KCAttractionRankerSuper::sortStub(KCAttractionStub aStub){
 
   ///////////Locate aStub
   int index;
-  for(index= 0; index<mStubListSize; i++){
-    if(aStub.attrPtr == mStubList[index]->attrPtr)
+  for(index= 0; index<mStubListSize; index++){
+    if(aStub.attrPtr == mStubList[index].attrPtr)
       break;
   }
-  if(i==mStubListSize) //aStub not in list
+  if(index==mStubListSize) //aStub not in list
       return;
     
   //index now equals index of aStub in mStubList
@@ -76,15 +69,15 @@ int KCAttractionRankerSuper::getCheapest(){
   return mCheapest;
 }
 
-KCAttractionStub KCAttractionRankerSuper::getTopAttraction(){
+KCAttractionStub* KCAttractionRankerSuper::getTopAttraction(){
   //std::cout << std::endl << "Got top attraction stub";
-  return mStubList[0];
+  return &mStubList[0];
 }
 
-KCAttractionStub KCAttractionRankerSuper::getRankedAttraction(int place){
+KCAttractionStub* KCAttractionRankerSuper::getRankedAttraction(int place){
   //std::cout << std::endl << "Got " << place << " ranked stub";
   if(place < mStubListSize)
-    return mStubList[place];
+    return &mStubList[place];
   else
     return NULL;
 }
@@ -116,7 +109,7 @@ void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount
   sortStubList();
 }
 
-int KCAttractionRankerMaster::rateAttraction(KCAttractionStub *targetStub){
+int KCAttractionRankerMaster::rateAttraction(KCAttractionStub targetStub){
   //std::cout << std::endl << "Rated this stub generically";
 
 
@@ -138,7 +131,7 @@ KCRideRanker::~KCRideRanker(){
   std::cout << std::endl << "Deleted Ride Ranker";
 }
 
-void KCRideRanker::buildStubList(PlHAttractionList *aList){
+void KCRideRanker::buildStubList(Attraction *aList){
   std::cout << std::endl << "Built ride stub list";
 }
 
@@ -166,7 +159,7 @@ KCVendorRanker::~KCVendorRanker(){
   std::cout << std::endl << "Deleted Vendor Ranker";
 }
 
-void KCVendorRanker::buildStubList(PlHAttractionList *aList){
+void KCVendorRanker::buildStubList(Attraction *aList){
   std::cout << std::endl << "Built Vendor stub list";
 }
 
@@ -187,7 +180,7 @@ KCGameRanker::~KCGameRanker(){
   std::cout << std::endl << "Deleted Game Ranker";
 }
 
-void KCGameRanker::buildStubList(PlHAttractionList *aList){
+void KCGameRanker::buildStubList(Attraction *aList){
   std::cout << std::endl << "Built Game stub list";
 }
 
@@ -207,7 +200,7 @@ KCCoinStandRanker::~KCCoinStandRanker(){
   std::cout << std::endl << "Deleted CoinStand Ranker";
 }
 
-void KCCoinStandRanker::buildStubList(PlHAttractionList *aList){
+void KCCoinStandRanker::buildStubList(Attraction *aList){
   std::cout << std::endl << "Built CoinStand stub list";
 }
 
