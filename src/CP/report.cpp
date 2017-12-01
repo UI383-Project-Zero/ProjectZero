@@ -4,6 +4,7 @@
 
 // local includes
 #include "report.h"
+#include "printreport.h"
 
 //global includes
 #include <iostream>
@@ -21,7 +22,7 @@ using namespace std;
 
    */
 
-
+   printreport();
  }
 
  void report::getWeather(){
@@ -31,13 +32,39 @@ using namespace std;
       the plan is to rate the weather on an integer scale. The weather
       will be a public vector<int>.
    */
+
+  // weather = weatherRatings;
  }
 
- void report::getPeopleStatistics(){
+ people report::getPeopleStatistics(vector<SACustomer> c){
    /*
       This will fetch the statiscics for all of the people in the park.
       Should include average money per person, satisfaction level ect.
    */
+
+   people p;
+
+   int count_people = getMPopSize();
+
+   for(int i = 0; i < count_people; i++){
+     p.stats[0] += c[i].getMSatisfaction();
+     p.stats[1] += c[i].getMTickets();
+     p.stats[2] += c[i].getMHunger();
+     p.stats[3] += c[i].getMStamina();
+     p.stats[4] += c[i].getMNausea();
+     p.stats[5] += c[i].getMPatience();
+     //p.stats[6] += c[i].mThrillSeeking
+
+     p.money += c[i].getMMoney();
+   }
+
+   for(int i = 0; i < 7; i++){
+     p.stats[i] = p.stats[i] / count_people;
+   }
+
+   p.money = p.money / count_people;
+
+   return p;
  }
 
  void report::getRideStatistics(){
