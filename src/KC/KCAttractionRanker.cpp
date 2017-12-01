@@ -17,7 +17,7 @@ KCAttractionRankerSuper::~KCAttractionRankerSuper(){
   //std::cout << std::endl << "Ranker Super Deleted";
 }
 
-virtual void KCAttractionRankerSuper::buildStubList(Attraction* attrList){
+virtual void KCAttractionRankerSuper::buildStubList(Attraction* attrList, int attrCount){
   std::cout << std::endl << "Error. Super Ranker doesn't build lists.";
 }
 
@@ -41,6 +41,35 @@ void KCAttractionRankerSuper::sortStub(KCAttractionStub aStub){
   //Locates aStub in list array (by comparing attraction pointer)
   //Uses adapted bubblesort to move element to new position
   /////Sourced from  https://stackoverflow.com/questions/13776531/how-to-re-sort-already-sorted-array-where-one-element-updates
+
+  ///////////Locate aStub
+  int index;
+  for(index= 0; index<mStubListSize; i++){
+    if(aStub.attrPtr == mStubList[index]->attrPtr)
+      break;
+  }
+  if(i==mStubListSize) //aStub not in list
+      return;
+    
+  //index now equals index of aStub in mStubList
+  ///////Sort (re-use adaptation)
+  //////Changes:
+  //aStub takes places of h
+  //index takes place of oddPosition
+  //mStubList takes place of a
+  //size of mStubList is known
+  //comparisons flipped, as list is in descending order
+
+  int i;
+  if(aStub < mStubList[index+1]){
+    for(i = index; i < mStubListSize-1 && mStubList[i+1] > aStub; i++)
+      mStubList[i] = mStubList[i+1];
+  }
+  else{
+    for(i = index; i > 0 && mStubList[i-1] < aStub; i--)
+      mStubList[i] = mStubList[i-1];
+  }
+  mStubList[i] = aStub;
 }
 
 int KCAttractionRankerSuper::getCheapest(){
@@ -48,11 +77,16 @@ int KCAttractionRankerSuper::getCheapest(){
 }
 
 KCAttractionStub KCAttractionRankerSuper::getTopAttraction(){
-  std::cout << std::endl << "Got top attraction stub";
+  //std::cout << std::endl << "Got top attraction stub";
+  return mStubList[0];
 }
 
 KCAttractionStub KCAttractionRankerSuper::getRankedAttraction(int place){
-  std::cout << std::endl << "Got " << place << " ranked stub";
+  //std::cout << std::endl << "Got " << place << " ranked stub";
+  if(place < mStubListSize)
+    return mStubList[place];
+  else
+    return NULL;
 }
 
 
@@ -61,19 +95,35 @@ KCAttractionStub KCAttractionRankerSuper::getRankedAttraction(int place){
  */
 
 KCAttractionRankerMaster::KCAttractionRankerMaster(){
-  std::cout << std::endl << "Created Master Rankeer";
+  //std::cout << std::endl << "Created Master Rankeer";
 }
 
 KCAttractionRankerMaster::~KCAttractionRankerMaster(){
-  std::cout << std::endl << "Deleted Master Ranker";
+  //std::cout << std::endl << "Deleted Master Ranker";
 }
 
-void KCAttractionRankerMaster::buildStubList(PlHAttractionList *aList){
-  std::cout << std::endl << "Built attraction stub list";
+void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount){
+  //std::cout << std::endl << "Built attraction stub list";
+  mStubListSize = attrCount;
+  mStubList = new KCAttractionStub[mStubListSize];
+  mCheapest = attrList[0].mRideCost;
+  for(int i =0; i < mStubListSize; i++){
+    mStubList[i].attrPtr = &attrList[i];
+    if(mStubList[i].attrPtr->mRideCost < mCheapest)
+      mCheapest = mStubList[i].attrPtr->mRideCost;
+    rateAttraction(mStubList[i]);
+  }
+  sortStubList();
 }
 
 int KCAttractionRankerMaster::rateAttraction(KCAttractionStub *targetStub){
-  std::cout << std::endl << "Rated this stub generically";
+  //std::cout << std::endl << "Rated this stub generically";
+
+
+
+
+
+
 }
 
 /*
