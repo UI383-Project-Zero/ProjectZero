@@ -1,11 +1,8 @@
 #ifndef KCATTRACTIONRANKER_H
 #define KCATTRACTIONRANKER_H
 
-class SAPopulation;
-class SACustomer;
-
-class PlHAttraction;
-class PlHAttractionList;
+#include  "dummyclasses/AttractionDummy.h"
+//class Attraction;
 
 class KCRideRanker;
 class KCGameRanker;
@@ -18,7 +15,15 @@ class KCCoinStandRanker;
 	Holds that attractions current rating
 */
 
-struct KCAttractionStub {PlHAttraction* attrPtr; int rating;};
+struct KCAttractionStub {Attraction* attrPtr; int rating;};
+//Operators for sorting
+bool operator> (const KCAttractionStub& lhs, const KCAttractionStub& rhs) {return lhs.rating > rhs.rating;}
+bool operator< (const KCAttractionStub& lhs, const KCAttractionStub& rhs) {return lhs.rating < rhs.rating;}
+//Stub comparison functor for descending sort
+bool sortByHighRating(KCAttractionStub highrating, KCAttractionStub lowrating)
+{return highrating > lowrating;}
+
+
 
 /*
 	Attraction Ranker super class
@@ -48,20 +53,25 @@ class KCAttractionRankerSuper {
 	protected:
 		int mCheapest;
 		KCAttractionStub * mStubList;
-		
+		int mStubListSize;
 	public:
 		KCAttractionRankerSuper();
-		virtual ~KCAttractionRankerSuper();
-		
-		void buildStubList(PlHAttractionList*);
-		int rateAttraction(KCAttractionStub*);
+	        ~KCAttractionRankerSuper();
+
+		//Assumes null-terminated array
+		virtual void buildStubList(Attraction*, int);
+		//Rates individual attraction
+		virtual int rateAttraction(KCAttractionStub);
+		//Calls rateAttraction on entire stub list
 		void rateAll();
+		//Calls sort on StubList
 		void sortStubList();
+		//Sorts single stub into new location in list
 		void sortStub(KCAttractionStub);
 		
 		int getCheapest();
-		KCAttractionStub getTopAttraction();
-		KCAttractionStub getRankedAttraction(int);
+		KCAttractionStub* getTopAttraction();
+		KCAttractionStub* getRankedAttraction(int);
 };
 
 /*
@@ -82,8 +92,8 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper{
 		KCAttractionRankerMaster();
 		~KCAttractionRankerMaster();
 		
-		void buildStubList(PlHAttractionList*);
-		int rateAttraction(KCAttractionStub*);
+		void buildStubList(Attraction*, int);
+		int rateAttraction(KCAttractionStub);
 
 		void updateStubLists();
 		
@@ -110,7 +120,7 @@ class KCRideRanker : protected KCAttractionRankerSuper{
 		KCRideRanker();
 		~KCRideRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 		
 		int getLeastThrilling();
@@ -132,7 +142,7 @@ class KCVendorRanker : protected KCAttractionRankerSuper{
 		KCVendorRanker();
 		~KCVendorRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 };
 
@@ -152,7 +162,7 @@ class KCGameRanker : protected KCAttractionRankerSuper{
 		KCGameRanker();
 		~KCGameRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 		
 		KCCoinStandRanker *mCoinStandList;
@@ -183,7 +193,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper{
 		KCCoinStandRanker();
 		~KCCoinStandRanker();
 		
-		void buildStubList(PlHAttractionList*);
+		void buildStubList(Attraction*);
 		int rateAttraction(KCAttractionStub*);
 
 		int getSmallest();

@@ -37,6 +37,8 @@ class KCCrowdDirector {
 		
 		void getRides(PlHAttractionList*);
 		
+		void updateRides();
+
 		void getPopulation(SAPopulation*);
 		
 		void updateCrowd();

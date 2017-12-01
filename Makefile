@@ -5,6 +5,7 @@ mainLib=inc/
 
 all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs) $(JC_objs)
 
+inc_all_libs = -I $(mainLib) -I $(SALib) -I $(KCLib) -I $(CPLib) -I $(PVLib) -I $(JTLib) -I $(JCLib) 
 ##Test Variables
 test_objs = tst/Catch/tests-main.o SATests.o PVTests.o # CPTests.o JTTests.o KCTests.o JCTests.o
 test_exe = run_tests runSA_tests ruKC_tests runPV_tests runJT_tests runJC_tests
@@ -52,7 +53,7 @@ clean_exe:
 clean_all: clean clean_exe
 ######Main
 main.o: src/main.cpp
-	$(CC) -o $@ -c $^ -I $(mainLib)
+	$(CC) -o $@ -c $^ $(inc_all_libs)
 
 ######Tests
 test_build: $(test_objs)
@@ -152,16 +153,16 @@ JTTest: JTTest_build clean
 ######JCDirectives
 Attraction.o : src/JC/Attraction.cpp
 	$(CC) -o $@ -c $^ -I $(JCLib)
- 
+
 GameArea.o : src/JC/GameArea.cpp
 	$(CC) -o $@ -c $^ -I $(JCLib)
 
 Games.o : src/JC/Games.cpp
 	$(CC) -o $@ -c $^ -I $(JCLib)
- 
+
 PatronQueue.o : src/JC/PatronQueue.cpp
 	$(CC) -o $@ -c $^ -I $(JCLib)
-	
+
 JCTests.o: tst/JC/JCTests.cpp	
 	$(CC) -o $@ -c $^ -I $(JCLib) -I $(JCSrc) -I $(tstLib)
 
