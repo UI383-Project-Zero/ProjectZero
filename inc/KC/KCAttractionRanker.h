@@ -1,13 +1,15 @@
 #ifndef KCATTRACTIONRANKER_H
 #define KCATTRACTIONRANKER_H
 
+
+//Replace with appropriate header when other module finalized
 #include  "dummyclasses/AttractionDummy.h"
-//class Attraction;
 
 class KCRideRanker;
 class KCGameRanker;
 class KCVendorRanker;
 class KCCoinStandRanker;
+
 
 /*
 	Attraction Stub structure.

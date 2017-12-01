@@ -1,0 +1,5 @@
+//Ride ranking weights
+#define QUEUE_LENGTH_MODIFIER 0.25
+#define PRICE_WEIGHT 1.0
+
+#define QUEUED_SATISFACTION_PENALTY 0.5
