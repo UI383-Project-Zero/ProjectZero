@@ -10,7 +10,7 @@
 /*This is the header file for the Games subclass of attractions, which will be where games in the park will be created*/
 class Games {
 	private:
-		play();
+		void play();
 		
 	public:
 		int TokenCost; //How many tokens the game in question costs
