@@ -1,3 +1,4 @@
+// ifndef to define only once
 #ifndef SA_CONSTANT_H_
 #define SA_CONSTANT_H_
 const static int MAX_SIZE = 2000; 
