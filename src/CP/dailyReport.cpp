@@ -47,6 +47,7 @@
    Stamina = p.stats[3];
    Nausea = p.stats[4];
    Patience = p.stats[5];
+   Money = p.money;
   //  VendorSales;
   //  GameSales;
   //  RideSales;
@@ -56,6 +57,11 @@
   //for the overall report. These will be used later to compile the overall report
   dailyNumPeople.push_back(NumPeople);
   dailySatisfaction.push_back(Satisfaction);
+  dailyTickets.push_back(Tickets);
+  dailyHunger.push_back(Hunger);
+  dailyStamina.push_back(Stamina);
+  dailyNausea.push_back(Nausea);
+  dailyPatience.push_back(Patience);
   dailyVendorSales.push_back(VendorSales);
   dailyGameSales.push_back(GameSales);
   dailyRideSales.push_back(RideSales);

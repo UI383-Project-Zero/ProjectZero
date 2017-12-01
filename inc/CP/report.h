@@ -23,19 +23,22 @@
   protected:
     int totaldays;
     int avg_satisfaction;
-    double avg_money;
     int avg_tickets;
     int avg_hunger;
     int avg_stamina;
     int avg_nausea;
     int avg_patience;
-    string most_favoritefood;
-    string least_favoritefood;
-    int avg_thrillseeking;
-    vector<int> weather;
+    double avg_money;
+    int avg_thrillseeking; //no getThrillseeking() function in customer class
 
+    vector<int> weather;
     vector<int> dailyNumPeople;
     vector<int> dailySatisfaction;
+    vector<int> dailyTickets;
+    vector<int> dailyHunger;
+    vector<int> dailyStamina;
+    vector<int> dailyNausea;
+    vector<int> dailyPatience;
     vector<int> dailyVendorSales;
     vector<int> dailyGameSales;
     vector<int> dailyRideSales;

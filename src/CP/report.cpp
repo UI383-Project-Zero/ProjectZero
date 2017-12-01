@@ -15,6 +15,8 @@ using namespace std;
  }
 
  void report::getWeather(){
+   //this will assign the vector in the report class the value of the
+   // vector from the weather class
    weather = weatherRatings;
  }
 

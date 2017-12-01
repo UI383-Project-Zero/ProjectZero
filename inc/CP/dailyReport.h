@@ -15,6 +15,7 @@ class dailyReport : public report{
   int Stamina;
   int Nausea;
   int Patience;
+  double Money;
   int VendorSales;
   int GameSales;
   int RideSales;
