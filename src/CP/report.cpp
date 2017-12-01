@@ -4,7 +4,7 @@
 
 // local includes
 #include "../../inc/CP/report.h"
-#include "printreport.h"
+#include "printreport.cpp"
 
 //global includes
 #include <iostream>
@@ -15,6 +15,8 @@ using namespace std;
  }
 
  void report::getWeather(){
+   //this will assign the vector in the report class the value of the
+   // vector from the weather class
    weather = weatherRatings;
  }
 
@@ -25,6 +27,7 @@ using namespace std;
    int count_people = getMPopSize();
 
    for(int i = 0; i < count_people; i++){
+     //these array values corrospond to what was specified in report.h
      p.stats[0] += c[i].getMSatisfaction();
      p.stats[1] += c[i].getMTickets();
      p.stats[2] += c[i].getMHunger();
