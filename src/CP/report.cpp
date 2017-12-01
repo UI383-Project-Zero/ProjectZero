@@ -3,7 +3,7 @@
  */
 
 // local includes
-#include "report.h"
+#include "../../inc/CP/report.h"
 #include "printreport.h"
 
 //global includes
@@ -11,36 +11,14 @@
 using namespace std;
 
  void report::overallReport(){
-   /*
-      This function will compile the overall report at the end of
-      the simulation. This will track the total amount of time and
-      average all of the statistics.
-
-      My plan is to import a typesetting library so that I can format
-      the report and make it look good. This function will output the
-      report to a file as well as the GUI.
-
-   */
-
    printreport();
  }
 
  void report::getWeather(){
-
-   /*
-      This funstion will get the weather from the GUI. As of right now
-      the plan is to rate the weather on an integer scale. The weather
-      will be a public vector<int>.
-   */
-
-  // weather = weatherRatings;
+   weather = weatherRatings;
  }
 
  people report::getPeopleStatistics(vector<SACustomer> c){
-   /*
-      This will fetch the statiscics for all of the people in the park.
-      Should include average money per person, satisfaction level ect.
-   */
 
    people p;
 

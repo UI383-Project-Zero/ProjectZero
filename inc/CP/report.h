@@ -38,6 +38,12 @@
     void getRideStatistics();
     void getVendorStatistics();
     void getGameStatistics();
+    void printweather();
+    void printpeople();
+    void printrides();
+    void printgames();
+    void printvendors();
+    void printreport();
  };
 
 #endif
