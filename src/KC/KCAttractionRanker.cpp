@@ -97,8 +97,6 @@ void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int rideCoun
   mGameList.buildStubList(attrList+rideCount+vendorCount, gameCount, coinStandCount);
 }
 
-
-
 void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int attrCount){
   if(attrCount <= 0)
     return;
@@ -145,27 +143,23 @@ KCRideRanker::~KCRideRanker(){
   //std::cout << std::endl << "Deleted Ride Ranker";
 }
 
-void KCRideRanker::buildStubList(Attraction **attrList, int attrCount){
-  buildStubList(dynamic_cast<Ride*>(*attrList), attrCount);
-}
-
-void KCRideRanker::buildStubList(Ride** rideList, int rideCount){
+void KCRideRanker::buildStubList(Attraction **rideList, int rideCount){
   if(rideCount <= 0 || rideList == NULL)
     return;
   
   mStubListSize = rideCount;
 
   delete mStubList;
-  mStubList = new KCAttractionStub[mStubListSize];
+  mStubList = new KCAttractionStub<Ride>[mStubListSize];
 
   //initial cheapest
-  mCheapest = rideList[0]->mRideCost;
-  mLeastThrilling = rideList[0]->mRideThrill;
-  mLeastNauseating = rideList[0]>mRideNaus;
+  mCheapest = dynamic_cast<Ride>(*(rideList[0]))->mRideCost;
+  mLeastThrilling = dynamic_cast<Ride>(rideList[0])->mRideThrill;
+  mLeastNauseating = dynamic_cast<Ride>(rideList[0])->mRideNaus;
   
   for(int i =0; i < mStubListSize; i++){
     //Add to list
-    mStubList[i].attrPtr = rideList[i];
+    mStubList[i].attrPtr = dynamic_cast<Ride>(*(rideList[i]));
     //Update cheapest
 
      //Update cheap/least/least

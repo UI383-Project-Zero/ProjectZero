@@ -94,7 +94,6 @@ class KCRideRanker : protected KCAttractionRankerSuper<KCAttractionStub<Ride> >{
 		~KCRideRanker();
 		
 		void buildStubList(Attraction**, int);
-		void buildStubList(Ride**, int);
 		int rateAttraction(KCAttractionStub<Ride>*);
 		
 		int getLeastThrilling();
