@@ -7,7 +7,7 @@
 
  #include <cstdlib>
  #include <vector>
- #include <cstring>
+ #include <string>
  using namespace std;
 
  class report {

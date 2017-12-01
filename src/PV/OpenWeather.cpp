@@ -4,6 +4,8 @@
  * Summary: Factory for producing varying                                          
  *          weather report sources                                                 
  ****************************************/
+#ifndef OPENWEATHER_H
+#define OPENWEATHER_H
 
 #include<iostream>
 #include<vector>
@@ -26,3 +28,5 @@ void OpenWeather::getWeatherData() {
 void OpenWeather::setRatings() {
   //parses through weather data to set ratings
 }
+
+#endif

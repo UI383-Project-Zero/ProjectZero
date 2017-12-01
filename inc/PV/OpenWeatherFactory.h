@@ -4,6 +4,8 @@
  * Summary: Factory for producing varying                                      
  *          weather report sources                                                 
  ****************************************/
+#ifndef WEATHERFACTORY_H
+#define WEATHERFACTORY_H
 
 #include <iostream>
 #include "WeatherFactory.h"
@@ -15,3 +17,5 @@ class OpenWeatherFactory //: public WeatherFactory
  public:
   IWeatherReport getWeather(WeatherSources source)();
 };
+
+#endif
