@@ -1,30 +1,19 @@
 #include <iostream>
 #include <cstdlib>    /* srand, rand */
-#include <ctime>      /* time */
 
 #include "../../inc/SA/constant.h"
 
-using namespace std;
-
 class SAPopulationConfig {
 public:
+	/**
+	* this function generates random value using random day of week and weather
+	* 
+	* @return random integer for population size
+	*/
     static int generateSize() {
-        int weatherIndex = (int) (rand() / 1000) % 5;
-        cout << "weatherIndex: " << weatherIndex << endl;
-        int dayOfWeekIndex = (int) (rand() / 1000) % 7;
-        cout << "dayOfWeekIndex: " << dayOfWeekIndex << endl;
+        int weatherIndex = (int) (rand() / 1000) % 5;  // 5 weather conditions
+        int dayOfWeekIndex = (int) (rand() / 1000) % 7;  // 7 days in a week
         
         return MAX_SIZE * DAY_OF_WEEK[dayOfWeekIndex] * WEATHER[weatherIndex];
     }
 };
-
-/**
-* Just for test purpose
-*/
-/*int main() {
-    srand (time(0));
-    
-    int size = SAPopulationConfig::generateSize();
-    cout << "SIZE: " << size << endl;
-    return 0;
-}*/
