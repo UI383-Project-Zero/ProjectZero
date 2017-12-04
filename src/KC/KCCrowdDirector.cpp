@@ -10,7 +10,7 @@ KCCrowdDirector::~KCCrowdDirector(){
   std::cout << std::endl << "Crowd Director deleted";
 }
 
-void KCCrowdDirector::getRides(PlHAttractionList *aList){
+void KCCrowdDirector::getRides(PlHAttractionList *aList){ //Array of attractions. Needs arguments for attraction counts. See masterRanker stublist builder for appropriate input
   std::cout << std::endl << "Got a list";
 }
 
@@ -19,7 +19,7 @@ void KCCrowdDirector::getPopulation(SAPopulation *aPop){
   mCrowd = NULL;
 }
 
-void KCCrowdDirector::updateCrowd(){
+void KCCrowdDirector::updateCrowd(){ //Step through crowd list, call updateCustomer on each
   std::cout << std::endl << "Updated crowd";
 }
 
