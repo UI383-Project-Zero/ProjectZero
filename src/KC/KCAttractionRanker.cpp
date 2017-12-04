@@ -90,6 +90,12 @@ KCAttractionRankerMaster::~KCAttractionRankerMaster(){
   //std::cout << std::endl << "Deleted Master Ranker";
 }
 
+//Reads in list of attractions and sub-type counts. Assumes list is of Attraction-type
+//Order: [(rides),(vendors),(games),(coin stands)]
+//Sends games,vendors,rides to buildStubList (the virtual function) to build the master list
+//Sends individual 
+//Sends games and coinstands to gameranker, so that it can build both lists
+//Passes as Attraction-type. Sub-rankers do type conversion
 void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int rideCount, int vendorCount, int gameCount, int coinStandCount){
   buildStubList(attrList, rideCount + vendorCount + gameCount);
   mRideList.buildStubList(attrList, rideCount);
