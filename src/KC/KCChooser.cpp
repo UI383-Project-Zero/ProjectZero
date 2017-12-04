@@ -14,7 +14,7 @@ void KCChooser::newSubject(SACustomer* sub){
   mSubject = sub;
 }
 
-unsigned int KCChooser::statusCheck(){
+unsigned int KCChooser::statusCheck(){ //Checks stats, decides if ride/game/vendor preference, or if neutral
   cout << endl << "Status checked.";
   return 0;
 }
@@ -24,6 +24,6 @@ unsigned int KCChooser::patienceCheck(){
   return 0;
 }
 
-PlHAttraction* KCChooser::attractionSelect(){
+PlHAttraction* KCChooser::attractionSelect(){ //Picks best ride/game/vendor or overall attraction that subject has stats to use
   cout << endl << "Attraction selected.";
 }
