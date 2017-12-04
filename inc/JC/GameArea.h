@@ -7,13 +7,13 @@
 #define GAMEAREA_H
 
 #include "Attraction.h"
-
+#include <string>
 /* This header file is a subclass of the Attraction superclass.  This subclass is mostly to encompass all of the various games in the park.  It will be used to mark patrons as playing games, and it will alter the amount of coins they have on them.*/
 
 class GameArea {
 	private:
-		void flagPatronGameArea(); //Will change a patrons status if it is inside the game area
-		void giveTokens(); //Using the Patron Characteristics passed from behavior, this function should give the Patron's an amount of coins that depends on the amount of money they have in their "wallet"
+		void GameArea::flagPatronGameArea(); //Will change a patrons status if it is inside the game area
+		void GameArea::giveTokens(); //Using the Patron Characteristics passed from behavior, this function should give the Patron's an amount of coins that depends on the amount of money they have in their "wallet"
 		
 	public:
 		int cost; //The cost of each game
