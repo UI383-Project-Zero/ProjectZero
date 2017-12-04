@@ -1,7 +1,7 @@
 # ProjectZero
 ## URGENT!
 #### Add notes here for urgent matters all group members should see
-Nothing (in particular) at the moment. Hell-week is upon us, and all is urgent. We reeeeeally need to meet up or exchange some emails at some point.
+
 
 ## ISSUES TO ADDRESS
 #### Notes here for to-do items that are not urgent
@@ -9,7 +9,6 @@ Nothing (in particular) at the moment. Hell-week is upon us, and all is urgent. 
 ## RECENT CHANGES
 #### Add notes here for recent changes that all group members should see. 
 #### Note: 2 or more spaces at end of line to create new-line. Two line breaks to create paragraphs.
-12/1|12:01am|KC Set up readme, set up main.cpp with comments for filling in the blanks. Please add your code as it appears.   
 
 ## Intro
 This is just a quick over-view of how the project is sorted, how the main and make files are sorted, and any other details we choose to shove here for now. Anyone can edit this as needed.   
