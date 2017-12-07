@@ -30,10 +30,14 @@ int main(){
   ////////////////Simulation set-up
   //Initial set-up for everything not already configured by GUI. Resets as needed
   
-  //Get master attraction list (assumes that array of all attractions exists
-  //decisionMaker.getRides(##ridelist##);
+  //Get master attraction list 
+  //Assumes that single array of type Attraction exists and has all attraction objects in below order. Count values given as integers.
+  ////Rides
+  ////Vendors
+  ////Games
+  ////Coinstands
+  //decisionMaker.getRides(##ridelist##, ##rideCount##, ##vendorCount##, ##gameCount##, ##coinStandCount##);
 
-  
   ////////////////////////////Simulation loop start
   //Beginning of loop. Repeats and updates every day
   //Reset objects or create new as needed
