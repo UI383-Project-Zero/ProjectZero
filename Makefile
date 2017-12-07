@@ -135,11 +135,17 @@ PVTest_build: tst/Catch/tests-main.o PVTests.o
 PVTest: PVTest_build clean
 	./run_PVtests
 ######JTDirectives
-Ride.o : src/JT/Ride.cpp
+JtRide.o : src/JT/JtRide.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib)
 
-Vendor.o : src/JT/Vendor.cpp
+JtVendor.o : src/JT/JtVendor.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib)
+
+JtOrderDecorator.o  : src/JT/JtOrderDecorator.cpp
+	$(CC) -o $@ -c $^ -I $(JTLib)
+	
+JtAttractionIndex.o : src/JT/JtAttractionIndex.cpp
+	$(CC) -o $@ -c $^ -I $(JTLib)	
 
 JTTests.o: tst/JT/JTTests.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib) -I $(JTSrc) -I $(tstLib)
