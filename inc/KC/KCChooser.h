@@ -15,10 +15,33 @@
 		--PatienceCheck- Queued customer. Decide whether to leave queue, update stats
 			OR
 		--AttractionSelect- Free customer. Chooses ride
+
+
+
+
+		StatusCheck codes:
+		0: Done. Remove customer
+		1: Neutral. 
+		2: Ride preference
+		3: Vendor preference
+		4: Game preference
+
+		PatienceCheck codes:
+		0: Leave queue.
+		1: Stay, heavy penalty
+		2: Stay, no penalty
+
+		attractionSelect input codes:
+		1: Neutral
+		2: Ride preference
+		3: Vendor preference
+		4: Game preference
 */
 
-class SACustomer;
-class PlHAttraction;
+class SACustomer; //REPLACE
+#include "dummyclasses/AttractionDummy.h"; //REPLACE
+
+#include "KCDecisionWeights.h"
 
 class KCChooser{
 	private:
@@ -30,7 +53,7 @@ class KCChooser{
 		void newSubject(SACustomer*);
 		unsigned int statusCheck();
 		unsigned int patienceCheck();
-		PlHAttraction* attractionSelect();
+		Attraction* attractionSelect(int);
 };
 
 #endif //KCCHOOSER_H
