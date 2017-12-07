@@ -27,7 +27,7 @@ PV_objs= OpenWeather.o OpenWeatherFactory.o
 PVLib = inc/PV
 PVSrc = src/PV
 ####JT Variables
-JT_objs = Vendor.o Ride.o
+JT_objs = JtVendor.o JtRide.o JtOrderDecorator.o JtAttractionIndex.o
 JTLib = inc/JT
 JTSrc = src/JT
 ####JC Variables
