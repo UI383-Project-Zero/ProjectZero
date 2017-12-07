@@ -20,9 +20,11 @@ struct KCAttractionStub{
   //Operators for sorting
   bool operator> (const KCAttractionStub<pType>& rhs) {return rating > rhs.rating;}
   bool operator< (const KCAttractionStub<pType>& rhs) {return rating < rhs.rating;}
-  bool sortByHighRating(KCAttractionStub<pType> highrating, KCAttractionStub<pType> lowrating)
-  {return highrating > lowrating;}
 };
+
+template<typename comp_type> //For sorting stubs
+  bool sortByHighRating(comp_type highrating, comp_type lowrating)
+  {return highrating > lowrating;}
 
 /*
 	Attraction Ranker super class
@@ -144,7 +146,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper<KCAttractionStub<Coi
 		KCCoinStandRanker();
 		~KCCoinStandRanker();
 		
-		void buildStubList(Attraction**);
+		void buildStubList(Attraction**, int);
 		int rateAttraction(KCAttractionStub<CoinStand>*);
 
 		int getSmallest();

@@ -1,22 +1,28 @@
 
 class Attraction{
- public:
+ protected:
   int mRideCost;
   int mRideSat;
   int mQueueLen;
-  virtual void test();
 
-  
+ public:
+  virtual void test();
+  int GetCost(){return mRideCost;}
+  int GetSat(){return mRideSat;}
+  int GetQ(){return mQueueLen;}
 };
 
-class Ride : protected  Attraction{
- public:
+class Ride : public Attraction{
+ private:
   int mRideThrill;
   int mRideNaus;
+ public:
   void test();
+  int GetThrill(){return mRideThrill;}
+  int GetNaus(){return mRideNaus;}
 };
 
-class Game : protected  Attraction{
+class Game : protected Attraction{
  public:
   void test();
 };
