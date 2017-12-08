@@ -18,6 +18,9 @@ class Attraction
 			//all attractions have a name such as "Food Vendor" or "RollerCoaster"
 			string mName;
 			
+			//replacing patronQueue
+			SACustomer * attractionQueue [100];
+	
 			//attractionQueue PatronQueue; //as previously mentioned I do not have the 
 			//attractionQueue code available to me yet
 			
