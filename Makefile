@@ -84,10 +84,10 @@ KCAttractionRanker.o: src/KC/KCAttractionRanker.cpp
 	$(CC) -o $@ -c $^ -I $(KCLib)
 
 KCCrowdDirector.o: src/KC/KCCrowdDirector.cpp
-	$(CC) -o $@ -c $^ -I $(KCLib)
+	$(CC) -o $@ -c $^ -I $(KCLib) -I $(SALib)
 
 KCChooser.o: src/KC/KCChooser.cpp
-	$(CC) -o $@ -c $^ -I $(KCLib)
+	$(CC) -o $@ -c $^ -I $(KCLib) -I $(SALib)
 
 KCTests.o: tst/KC/KCTests.cpp
 	$(CC) -o $@ -c $^ -I $(KCLib) -I $(KCSrc) -I $(tstLib)
@@ -108,7 +108,7 @@ report.o : src/CP/report.cpp
 	$(CC) -o $@ -c $^ -I $(CPLib)
 
 weeklyReport.o : src/CP/weeklyReport.cpp
-	$(CC) -o $@ -c $^ -I $(CPLib)
+	$(CC) -o $@ -c $^ -I n$(CPLib)
 
 CPTests.o: tst/CP/CPTests.cpp
 	$(CC) -o $@ -c $^ -I $(CPLib) -I $(CPSrc) -I $(tstLib)
@@ -143,7 +143,7 @@ JtVendor.o : src/JT/JtVendor.cpp
 
 JtOrderDecorator.o  : src/JT/JtOrderDecorator.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib)
-	
+
 JtAttractionIndex.o : src/JT/JtAttractionIndex.cpp
 	$(CC) -o $@ -c $^ -I $(JTLib)	
 

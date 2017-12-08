@@ -18,24 +18,23 @@ On start of day:
 -Gets new population pointer
 ---Or signals population to clear and generate new starting group
 */
-class KCChooser;
-class KCAttractionRankerMaster;
 
-class SAPopulation;
-class SACustomer;
-
-class PlHAttractionList;
+class SAPopulation; //REPLACE
+class SACustomer; //REPLACE
+#include "dummyclasses/AttractionDummy.h" //REPLACE
+#include "KCAttractionRanker.h"
+#include "KCChooser.h"
 
 class KCCrowdDirector {
 	private:
 		SAPopulation *mCrowd;
 		KCChooser mDecider;
-		KCAttractionRankerMaster *mMasterList;
+		KCAttractionRankerMaster mMasterList;
 	public:
 		KCCrowdDirector();
 		~KCCrowdDirector();
 		
-		void getRides(PlHAttractionList*);
+		void getRides(Attraction*,int,int,int,int);
 		
 		void updateRides();
 

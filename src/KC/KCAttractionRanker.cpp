@@ -96,14 +96,14 @@ KCAttractionRankerMaster::~KCAttractionRankerMaster(){
 //Sends individual 
 //Sends games and coinstands to gameranker, so that it can build both lists
 //Passes as Attraction-type. Sub-rankers do type conversion
-void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int rideCount, int vendorCount, int gameCount, int coinStandCount){
+void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int rideCount, int vendorCount, int gameCount, int coinStandCount){
   buildStubList(attrList, rideCount + vendorCount + gameCount);
   mRideList.buildStubList(attrList, rideCount);
   mVendorList.buildStubList(attrList+rideCount, vendorCount);
   mGameList.buildStubList(attrList+rideCount+vendorCount, gameCount, coinStandCount);
 }
 
-void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int attrCount){
+void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount){
   if(attrCount <= 0)
     return;
   mStubListSize = attrCount;
@@ -112,10 +112,10 @@ void KCAttractionRankerMaster::buildStubList(Attraction **attrList, int attrCoun
   mStubList = new KCAttractionStub<Attraction>[mStubListSize];
 
   //initial cheapest
-  mCheapest = attrList[0]->GetCost();
+  mCheapest = attrList[0].GetCost();
   for(int i =0; i < mStubListSize; i++){
     //Add to list
-    mStubList[i].attrPtr = attrList[i];
+    mStubList[i].attrPtr = &(attrList[i]);
     //Update cheapest
     if(mStubList[i].attrPtr->GetCost() < mCheapest)
       mCheapest = mStubList[i].attrPtr->GetCost();
@@ -149,7 +149,7 @@ KCRideRanker::~KCRideRanker(){
   //std::cout << std::endl << "Deleted Ride Ranker";
 }
 
-void KCRideRanker::buildStubList(Attraction **rideList, int rideCount){
+void KCRideRanker::buildStubList(Attraction *rideList, int rideCount){
   if(rideCount <= 0 || rideList == NULL)
     return;
   
@@ -159,13 +159,13 @@ void KCRideRanker::buildStubList(Attraction **rideList, int rideCount){
   mStubList = new KCAttractionStub<Ride>[mStubListSize];
 
   //initial cheapest
-  mCheapest = dynamic_cast<Ride*>(rideList[0])->GetCost();
-  mLeastThrilling = dynamic_cast<Ride*>(rideList[0])->GetThrill();
-  mLeastNauseating = dynamic_cast<Ride*>(rideList[0])->GetNaus();
+  mCheapest = (dynamic_cast<Ride*>(&(rideList[0])))->GetCost();
+  mLeastThrilling = (dynamic_cast<Ride*>(&(rideList[0])))->GetThrill();
+  mLeastNauseating = (dynamic_cast<Ride*>(&(rideList[0])))->GetNaus();
   
   for(int i =0; i < mStubListSize; i++){
     //Add to list
-    mStubList[i].attrPtr = dynamic_cast<Ride*>(rideList[i]);
+    mStubList[i].attrPtr = dynamic_cast<Ride*>(&(rideList[i]));
     //Update cheapest
 
      //Update cheap/least/least
@@ -211,7 +211,7 @@ KCVendorRanker::~KCVendorRanker(){
   std::cout << std::endl << "Deleted Vendor Ranker";
 }
 
-void KCVendorRanker::buildStubList(Attraction **VendorList, int VendorCount){
+void KCVendorRanker::buildStubList(Attraction *VendorList, int VendorCount){
   std::cout << std::endl << "Built Vendor stub list";
 }
 
@@ -232,11 +232,11 @@ KCGameRanker::~KCGameRanker(){
   std::cout << std::endl << "Deleted Game Ranker";
 }
 
-void KCGameRanker::buildStubList(Attraction **GameList, int GameCount){
+void KCGameRanker::buildStubList(Attraction *GameList, int GameCount){
   std::cout << std::endl << "Built Game stub list";
 }
 
-void KCGameRanker::buildStubList(Attraction **aList, int GameCount, int CoinStandCount){
+void KCGameRanker::buildStubList(Attraction *aList, int GameCount, int CoinStandCount){
   std::cout << std::endl << "Send to game list builder, send to coin stand list builder";
 }
 
@@ -256,7 +256,7 @@ KCCoinStandRanker::~KCCoinStandRanker(){
   std::cout << std::endl << "Deleted CoinStand Ranker";
 }
 
-void KCCoinStandRanker::buildStubList(Attraction **CoinStandList, int CoinStandCount){
+void KCCoinStandRanker::buildStubList(Attraction *CoinStandList, int CoinStandCount){
   std::cout << std::endl << "Built CoinStand stub list";
 }
 

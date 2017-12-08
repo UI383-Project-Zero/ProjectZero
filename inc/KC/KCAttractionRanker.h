@@ -62,7 +62,7 @@ class KCAttractionRankerSuper {
 	        ~KCAttractionRankerSuper();
 
 		//Assumes null-terminated array
-		virtual void buildStubList(Attraction**, int);
+		virtual void buildStubList(Attraction*, int);
 		//Rates individual attraction
 		virtual int rateAttraction(stubType*);
 		//Calls rateAttraction on entire stub list
@@ -95,7 +95,7 @@ class KCRideRanker : protected KCAttractionRankerSuper<KCAttractionStub<Ride> >{
 		KCRideRanker();
 		~KCRideRanker();
 		
-		void buildStubList(Attraction**, int);
+		void buildStubList(Attraction*, int);
 		int rateAttraction(KCAttractionStub<Ride>*);
 		
 		int getLeastThrilling();
@@ -117,7 +117,7 @@ class KCVendorRanker : protected KCAttractionRankerSuper<KCAttractionStub<Vendor
 		KCVendorRanker();
 		~KCVendorRanker();
 		
-		void buildStubList(Attraction**, int);
+		void buildStubList(Attraction*, int);
 		int rateAttraction(KCAttractionStub<Vendor>*);
 };
 
@@ -146,7 +146,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper<KCAttractionStub<Coi
 		KCCoinStandRanker();
 		~KCCoinStandRanker();
 		
-		void buildStubList(Attraction**, int);
+		void buildStubList(Attraction*, int);
 		int rateAttraction(KCAttractionStub<CoinStand>*);
 
 		int getSmallest();
@@ -168,8 +168,8 @@ class KCGameRanker : protected KCAttractionRankerSuper <KCAttractionStub<Game> >
 		KCGameRanker();
 		~KCGameRanker();
 		
-		void buildStubList(Attraction**, int);
-		void buildStubList(Attraction**, int, int);
+		void buildStubList(Attraction*, int);
+		void buildStubList(Attraction*, int, int);
 		
 		int rateAttraction(KCAttractionStub<Game>*);
 		
@@ -195,8 +195,8 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper <KCAttraction
 		KCAttractionRankerMaster();
 		~KCAttractionRankerMaster();
 		
-		void buildStubList(Attraction**, int);
-		void buildStubList(Attraction**, int, int, int, int);
+		void buildStubList(Attraction*, int);
+		void buildStubList(Attraction*, int, int, int, int);
 		int rateAttraction(KCAttractionStub<Attraction>*);
 
 		void updateStubLists();

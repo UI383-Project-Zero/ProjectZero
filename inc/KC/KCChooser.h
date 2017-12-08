@@ -4,45 +4,37 @@
 /* 
 	Chooser class
 
-	The chooser performs a series of actions on an individual customer
-	It is invoked by Crowd Director's updateCustomer method
-	
-	At this time it is assumed all weights and decision algorithms in Chooser are non-configurable. If this changes, the following implementation will be altered to include a constructor which reads in configurations. Private members will hold the necessary information.
+	The chooser makes decisions based on the customer and park state.
+	It is invoked by Crowd Director's updateCustomer method.
 	
 	Call sequence:
 		newSubject- Get a new customer pointer
-		statusCheck- Check status(free, queue, occupied)
+		statusCheck- Check status(done, free, queue, occupied)
 		--PatienceCheck- Queued customer. Decide whether to leave queue, update stats
 			OR
-		--AttractionSelect- Free customer. Chooses ride
-
-
-
+		--AttractionSelect- Free customer. Chooses ride using rankerlist
 
 		StatusCheck codes:
 		0: Done. Remove customer
-		1: Neutral. 
-		2: Ride preference
-		3: Vendor preference
-		4: Game preference
+		1: Occupied. Finish update
+		2: Queued. Check patience
+		3: Free. Put somewhere
 
 		PatienceCheck codes:
 		0: Leave queue.
 		1: Stay, heavy penalty
 		2: Stay, no penalty
 
-		attractionSelect input codes:
-		1: Neutral
-		2: Ride preference
-		3: Vendor preference
-		4: Game preference
+		attractionSelect:
+		Returns pointer to attraction for enqueue.
+		Null means no attraction found, remove customer
 */
 
-class SACustomer; //REPLACE
-#include "dummyclasses/AttractionDummy.h"; //REPLACE
+#include "customer.h"
+#include "dummyclasses/AttractionDummy.h" //REPLACE
 
 #include "KCDecisionWeights.h"
-
+#include "KCAttractionRanker.h"
 class KCChooser{
 	private:
 		SACustomer* mSubject;
@@ -53,7 +45,7 @@ class KCChooser{
 		void newSubject(SACustomer*);
 		unsigned int statusCheck();
 		unsigned int patienceCheck();
-		Attraction* attractionSelect(int);
+		Attraction* attractionSelect(KCAttractionRankerMaster *);
 };
 
 #endif //KCCHOOSER_H

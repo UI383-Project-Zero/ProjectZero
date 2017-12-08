@@ -1,5 +1,6 @@
 #include <iostream>
 #include "KCChooser.h"
+
 using namespace std;
 
 KCChooser::KCChooser(){
@@ -14,37 +15,55 @@ void KCChooser::newSubject(SACustomer* sub){
   mSubject = sub;
 }
 
-unsigned int KCChooser::statusCheck(){ //Checks stats, decides if ride/game/vendor preference, or if neutral
-  //cout << endl << "Status checked.";
-  ////////////////////////Ready to leave?
-
-  //return 0;
-  ////////////////////////Hungry?
-
-  //return 3;
-  ////////////////////////Not Hungry (or nauseaus)? Have coins?
-
-  //return 4;
-  ////////////////////////No coins, not hungry, not nauseaus? Like thrill?
-  //return 2;
-
-  ////////////////////////No better selection?
-  return 1;
+//StatusCheck codes:
+//0: Done. Remove customer
+//1: Occupied. Finish update
+//2: Queued. Check patience
+//3: Free. Put somewhere
+unsigned int KCChooser::statusCheck(){
+  //DONE. Out of stamina or money/tickets
+  if(mSubject->getMStamina() <= 0 || mSubject->getMMoney() <= 0 && mSubject->getMTickets() <=0){
+    return 0;
+  }
+  //OCCUPIED. Currently on/using/visiting ride/attraction
+  else if(mSubject->getMBusy()){
+    return 1;
+  }
+  //QUEUED. Enqueued.
+  else if(mSubject->getMQueue()){
+    return 2;
+  }
+  //FREE. nothing else happening
+  else{
+    return 3;
+  }
+  
 }
 
+
+//Needs some sort of queue tracker implemented in customer.h
+//i.e. mEnqueuedTick, getWaitTime()
 unsigned int KCChooser::patienceCheck(){
   //cout << endl << "Patience checked.";
   //////////////////////////Ready to leave?
+  //if wait time > sub->getMPatience();
   return 0;
   //////////////////////////Almost ready to leave?
+  //else if (wait time > sub->getMPatience()*LONG_WAIT_PERCENT)
   return 1;
   //////////////////////////Okay
+  //else{
   return 2;
 }
 
-Attraction* KCChooser::attractionSelect(int preference){ //Picks best ride/game/vendor or overall attraction that subject has stats to use
+
+//If no selection, returns NULL. Assumed to mean no possible rides
+Attraction* KCChooser::attractionSelect(KCAttractionRankerMaster* mList){
   //cout << endl << "Attraction selected.";
   Attraction* attrChoice;
+  attrChoice = NULL;
+
+  //Decision making process here
   
   return attrChoice;
 }

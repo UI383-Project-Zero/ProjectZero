@@ -1,4 +1,5 @@
-
+#ifndef DUMMY
+#define DUMMY
 class Attraction{
  protected:
   int mRideCost;
@@ -36,3 +37,5 @@ class Vendor : protected  Attraction{
  public:
   void test();
 };
+
+#endif
