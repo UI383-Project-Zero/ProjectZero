@@ -3,8 +3,10 @@
 
 
 //Replace with appropriate header when other module finalized
+#include "population.h"
 #include "JtAttraction.h"
 #include "JtRide.h"
+#include "JtVendor.h"
 #include "KCDecisionWeights.h"
 
 

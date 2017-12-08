@@ -19,9 +19,8 @@ On start of day:
 ---Or signals population to clear and generate new starting group
 */
 
-class SAPopulation; //REPLACE
-class SACustomer; //REPLACE
-#include "dummyclasses/AttractionDummy.h" //REPLACE
+#include "population.h"
+
 #include "KCAttractionRanker.h"
 #include "KCChooser.h"
 

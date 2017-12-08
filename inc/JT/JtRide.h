@@ -21,7 +21,7 @@ class Ride: public Attraction
 {
 	private	:
 		
-		static int final mCapacityMax;				//the maximumnumber of ptrons that can ride at the same time
+		static int mCapacityMax;				//the maximumnumber of ptrons that can ride at the same time
 		int mCapacityMin;							//the minimum number of patrons that the ride will start with
 		int mRideDuration;							//the number of the cycles the ride goes for
 		int mRidingFor;								//the number of cycles the ride has been active for
@@ -29,7 +29,7 @@ class Ride: public Attraction
 		int mThrill;								//thril value of  a ride
 		int mEarnings;								//running total of money recieve from patrons
 		int mSatisfaction;							//satisfaction value a patron recieves from the ride
-		DummyPatron mCurrentlyRiding [capacityMax];	//array that holds the Patrons currently on the ride
+		SACustomer *mCurrentlyRiding;	//array that holds the Patrons currently on the ride
 		//PatronQueue mAttractionQueue				//the line in which patrons wait to board the ride no class exists yet
 		
 		
@@ -59,7 +59,7 @@ class Ride: public Attraction
 				//to proceed -> start the ride. 
 				//if the ride is currently active compare mRideDuration with mRidingFor when mRidingFor == mRideDuration
 				//disembark patrons effect their satisfaction and unflag them clear mCurrentlyRiding and wait for next loop
-				void evaluateAttraction()                
+				void evaluateAttraction();               
 				
 				//takes the front patron out of the attractionQueue and returns it to be served
 				//note I still do not have the simlib queue shared across all attractions from JC
@@ -69,7 +69,7 @@ class Ride: public Attraction
 				//and sets them to mCurrentlyServing extends the behavior present in JtVendor class
 				//by simply creating a for loop to iterate untill the ride is full or the line is empty 
 				//more detail in JtRid.cpp
-				void  setMCurrentlyServing(Patron nextPatron)
+				void  setMCurrentlyServing(SACustomer nextPatron);
 				
 
 				
@@ -80,7 +80,7 @@ class Ride: public Attraction
 				void effectPatron(int satisfaction);
 				
               	//removes the patrons busy flag so the behaviour module can dictate their next move
-				void unflagPatron(Patron justServed);
+				void unflagPatron(SACustomer justServed);
 				
 				//simply adds the cost of the ride to the earnings tally when a patron pays 
 				//can be expanded with more advanced behavior later (operating costs etc.)
