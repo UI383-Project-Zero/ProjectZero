@@ -3,7 +3,7 @@ CC=g++
 
 mainLib=inc/
 
-all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs) $(JC_objs)
+all_objs = main.o $(SA_objs) $(KC_objs) $(CP_objs) $(PV_objs) #$(JC_objs)
 
 inc_all_libs = -I $(mainLib) -I $(SALib) -I $(KCLib) -I $(CPLib) -I $(PVLib) -I $(JTLib) -I $(JCLib)
 ##Test Variables
