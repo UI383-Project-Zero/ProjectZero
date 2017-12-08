@@ -2,7 +2,7 @@
  * Cameron Parrish, University of Idaho Fall 2017
  */
 
- #include "weeklyReport.h"
+ #include "../../inc/CP/weeklyReport.h"
 
  void weeklyReport::makeWeeklyReport(){
    /*

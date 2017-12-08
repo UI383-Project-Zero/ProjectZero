@@ -12,7 +12,7 @@ KCCrowdDirector::~KCCrowdDirector(){
 
 //Calls buildstublist for mMasterList
 //Assumes array of attraction base type
-void KCCrowdDirector::getRides(Attraction *aList, int rideCount, int vendorCount, int gameCount, int coinStandCount){ 
+void KCCrowdDirector::getRides(Attraction *aList, int rideCount, int vendorCount, int gameCount, int coinStandCount){
   //std::cout << std::endl << "Got a list";
   mMasterList.buildStubList(aList, rideCount, vendorCount, gameCount, coinStandCount);
 }
@@ -33,8 +33,8 @@ void KCCrowdDirector::updateCustomer(SACustomer* currSubject){
   //std::cout << std::endl << "Updated customer";
   mDecider.newSubject(currSubject);
 
-  int cust_pref = mDecider.StatusCheck();
-  if (!cust_pref){ //0: Remove customer 
+  int cust_pref = mDecider.statusCheck();
+  if (!cust_pref){ //0: Remove customer
     //remove customer
     return;//update finished
   }
@@ -49,6 +49,5 @@ void KCCrowdDirector::updateCustomer(SACustomer* currSubject){
     }
     return; //update finished
   }
-  
-}
 
+}

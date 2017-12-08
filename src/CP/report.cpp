@@ -17,14 +17,14 @@ using namespace std;
  void report::getWeather(){
    //this will assign the vector in the report class the value of the
    // vector from the weather class
-   weather = weatherRatings;
+   //weather = weatherRatings;
  }
 
  people report::getPeopleStatistics(vector<SACustomer> c){
 
    people p;
 
-   int count_people = getMPopSize();
+   int count_people;// = getMPopSize();
 
    for(int i = 0; i < count_people; i++){
      //these array values corrospond to what was specified in report.h

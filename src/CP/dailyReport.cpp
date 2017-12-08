@@ -7,7 +7,7 @@
  people dailyReport::getPeopleStatistics(vector<SACustomer> c){
    people p;
 
-   int count_people = getMPopSize();
+   int count_people;// = getMPopSize();
 
    for(int i = 0; i < count_people; i++){
      p.stats[0] += c[i].getMSatisfaction();
@@ -33,9 +33,9 @@
  void dailyReport::makeDailyReport(){
    totaldays++;
 
-   people p = getPeopleStatistics(/* this will be a customer vector*/);
+   people p;// = getPeopleStatistics(/* this will be a customer vector*/);
 
-   NumPeople = getMPopSize();
+   NumPeople;// = getMPopSize();
 
    //reminder that these values are as follows
    /* 0-satisfaction, 1-tickets, 2-hunger
