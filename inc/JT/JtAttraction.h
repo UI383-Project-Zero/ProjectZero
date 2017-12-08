@@ -20,7 +20,10 @@ class Attraction
 			
 			//replacing patronQueue
 			SACustomer * attractionQueue [100];
-	
+				
+			
+			
+			
 			//attractionQueue PatronQueue; //as previously mentioned I do not have the 
 			//attractionQueue code available to me yet
 			
@@ -45,6 +48,9 @@ class Attraction
 			
 			virtual float calculateProfits() =0;
 			
+			virtual SACustomer * removeFromQueue() = 0;
+	
+			virtual int addToQueue () = 0;
 };
 
 #endif //ATTRACTION_H
