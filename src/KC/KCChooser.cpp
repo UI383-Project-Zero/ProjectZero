@@ -22,7 +22,7 @@ void KCChooser::newSubject(SACustomer* sub){
 //3: Free. Put somewhere
 unsigned int KCChooser::statusCheck(){
   //DONE. Out of stamina or money/tickets
-  if(mSubject->getMStamina() <= 0 || mSubject->getMMoney() <= 0 && mSubject->getMTickets() <=0){
+  if(mSubject->getMStamina() <= 0 || mSubject->getMMoney() <= 0){
     return 0;
   }
   //OCCUPIED. Currently on/using/visiting ride/attraction

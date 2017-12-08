@@ -78,7 +78,7 @@ SATest: SATest_build clean
 	./run_SAtests
 ######KCDirectives
 KCAttractionRanker.o: src/KC/KCAttractionRanker.cpp
-	$(CC) -o $@ -c $^ -I $(KCLib) -I $(JTLib)
+	$(CC) -o $@ -c $^ -I $(KCLib) -I $(JTLib) -I $(SALib)
 
 KCCrowdDirector.o: src/KC/KCCrowdDirector.cpp
 	$(CC) -o $@ -c $^ -I $(KCLib) -I $(SALib) -I $(JTLib)
