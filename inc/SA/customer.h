@@ -18,7 +18,7 @@ class SACustomer {
 	  int mEnqueueTick;
           double mTicketPrice;
      public :
-	  SACustomer();
+	  SACustomer(int newID){mCustID = newID;}
 	  ~SACustomer();
           int getMCustID(){return mCustID;}
           void setMSatisfaction(int newSat){mSatisfaction = newSat;}
@@ -32,8 +32,8 @@ class SACustomer {
           void setMBusy(bool newStatus){mBusy = newStatus;}
           bool getMBusy(){return mBusy;}
           void setMQueue(bool newStatus){mQueue = newStatus;}
-          bool getMQueue(){return mQueue};
-	  void setMEnqueueTick(int startTick){mEnqueueTick = startTick};
-	  int getWaitTime(int currentTick){return mEnqueueTick - startTick;}
+          bool getMQueue(){return mQueue;}
+	  void setMEnqueueTick(int startTick){mEnqueueTick = startTick;}
+	  int getWaitTime(int currentTick){return currentTick - mEnqueueTick;}
 };
 #endif  // SA_CUSTOMER_H_
