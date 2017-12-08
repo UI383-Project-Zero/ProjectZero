@@ -32,6 +32,66 @@ Ride::Ride (string mNameR, int mCapacityMaxR, int mCapacityMinR, int mRideDurati
 
 }
 
+
+
+int Ride::addToQueue(SACustomer * newlyArrivedCustomer)
+{
+	if (mLineLength == 0)
+	{
+		attractionQueue[0] = newlyArrivedCustomer;
+		mLineLength += 1;
+		return 0;
+	}
+	
+	if (mLineLength >= 1)
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			if (attractionQueue[i] != NULL)
+			{
+				for (int j = 1; j < 100; j++)
+				{
+					int index = j+i%100;
+					
+						if (attractionQueue[index] == NULL)
+						{
+							attractionQueue[index] = newlyArrivedCustomer;
+							mLineLength +=1;
+							return index;
+						}
+				}
+			}
+		}
+	}
+
+}
+
+SACustomer * Ride::removeFromQueue()
+{
+	//As mentioned previously still don't have this class 
+	//But the idea is to remove the front Patron from the queue
+	//Decrement the line length and return thhe Patron we removed to 
+	//be set to the mCurrentlyServing member variable.
+	//hacking together a workaround
+	if (mLineLength == 0)
+	{
+		//error no customer to grab
+	}
+	
+	if (mLineLength >= 1)
+	{
+		for (int i = 0; i <100; i++)
+		{
+			if (attractionQueue[i] != NULL)
+			{
+				SACustomer * tempCustomer = attractionQueue[i];
+				attractionQueue[i] = NULL;
+				mLineLength -=1;
+				return tempCustomer;
+			}
+		}
+	}	
+}
 /*void Ride::removeFromQueue(PatronQueue attractionQueue)
 {
 }*/
