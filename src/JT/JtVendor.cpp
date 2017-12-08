@@ -13,7 +13,6 @@
 #include <iostream>
 #include "Vendor.h"
 #include "JtOrderDecorator.cpp"
-#include "JtDummyPatron.h"
 
 using namespace std;
 
@@ -21,22 +20,73 @@ using namespace std;
 Vendor::Vendor(string nameV, int serviceTimeV)
 {
 	mName = nameV;					//mName is decided via parameter during instantiation
-	mServiceTime = serviceTimeV;	//serviceTime is decided via parameter during instantiation
+	mServiceTime = serviceTimeV;			//serviceTime is decided via parameter during instantiation
 	mLineLength = 0;				//no one is in line when the vendor is instantiated
-	mCurrentlyServing = null;		//no one is being served when the vendor is instantiated
+	mCurrentlyServing = null;			//no one is being served when the vendor is instantiated
 	mEarnings = 0;					//no money has been earned when the vendor is instantiated
+							
 	//attractionQueue = new PatronQueue(); 
 }
 
-/*DummyPatron Vendor::removeFromQueue(PatronQueue attractionQueue)
+int Vendor::addToQueue(SACustomer * newlyArrivedCustomer)
+{
+	if (mLineLength == 0)
+	{
+		attractionQueue[0] = newlyArrivedCustomer;
+		return 0;
+	}
+	
+	if (mLineLength >= 1)
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			if (attractionQueue[i] != NULL)
+			{
+				for (int j = 1; j < 100; j++)
+				{
+					int index = j+i%100;
+					
+						if (attractionQueue[index] == NULL)
+						{
+							attractionQueue[index] = newlyArrivedCustomer;
+							return index;
+						}
+				}
+			}
+		}
+	}
+
+}
+
+SACustomer * Vendor::removeFromQueue()
 {
 	//As mentioned previously still don't have this class 
 	//But the idea is to remove the front Patron from the queue
 	//Decrement the line length and return thhe Patron we removed to 
 	//be set to the mCurrentlyServing member variable.
-	mLineLength -=1;
-	return attractionQueue.removeFromFront();
-}*/
+	//hacking together a workaround
+	if (mLineLength == 0)
+	{
+		//error no customer to grab
+	}
+	
+	if (mLineLength >= 1)
+	{
+		for (int i = 0; i <100; i++)
+		{
+			if (attractionQueue[i] != NULL)
+			{
+				SACustomer * tempCustomer = attractionQueue[i];
+				attractionQueue[i] = NULL;
+				mLineLength -=1;
+				return tempCustomer;
+			}
+		}
+	}	
+}
+
+
+*/
 
 //evaluates the state of the vendor, if there is a patron in line and none being currently served
 //we set the patron in the front of the line to be currently served by calling 
@@ -51,10 +101,10 @@ void Vendor::evaluateAttraction
 //sets the mCurrentlyServing value with the nextPatron parameter
 //which ideally would be returned by the removeFromQueue method which is yet to be recieved
 //For now I am using a DummyPatron object to simulate the process.
-void  Vendor::setMCurrentlyServing(DummyPatron nextPatron)
+void  Vendor::setMCurrentlyServing(SACustomer * nextCustomer)
 {
-	mCurrentlyServing = nextPatron;
-	placeOrder(nextPatron.criterion);
+	mCurrentlyServing = nextCustomer;
+	placeOrder(nextCustomer.mHunger);
 }
 //The patron places their order based on the criterion value which is a placeholder for now
 //but with group input and colloboration can be resolved to be level of hunger, available funds or 
@@ -85,7 +135,7 @@ void Vendor::placeOrder(int criterion)
 		effectPatron(order3.satisfaction());
 	}
 	
-	else if (criterion == 4)
+	else if (criterion >= 4)
 	{
 		JtOrder order4 = new JtEmpty();
 		order4 = new JtElephantEar(order4);
@@ -106,7 +156,7 @@ calculateEarnings(cost);
 //increment the patrons satisfaction level based on the value of their order
 void Vendor::effectPatron(int satisfaction)
 {
-mCurrentlyServing.satisfaction += satisfaction;
+mCurrentlyServing.mSatisfaction += satisfaction;
 }
 
 //Unflags the DummyPatron that is currently being served and sets mCurrentlyServing to null 
