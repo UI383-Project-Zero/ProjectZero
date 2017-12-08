@@ -39,6 +39,7 @@ int Ride::addToQueue(SACustomer * newlyArrivedCustomer)
 	if (mLineLength == 0)
 	{
 		attractionQueue[0] = newlyArrivedCustomer;
+		mLineLength += 1;
 		return 0;
 	}
 	
@@ -55,6 +56,7 @@ int Ride::addToQueue(SACustomer * newlyArrivedCustomer)
 						if (attractionQueue[index] == NULL)
 						{
 							attractionQueue[index] = newlyArrivedCustomer;
+							mLineLength +=1;
 							return index;
 						}
 				}
