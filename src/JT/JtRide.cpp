@@ -16,7 +16,7 @@
 using namespace std;
 
 //our constructor must do a lot of value setting to instantiate a new ride
-Ride::Ride (string mNameR, int mCapacityMaxR, int mCapacityMinR, int mRideDurationR, float mCostR, int mSatisfactionR) 
+Ride::Ride (string mNameR, int mCapacityMaxR, int mCapacityMinR, int mRideDurationR, float mCostR, int mSatisfactionR, int mThrillR) 
 {
 	mName = mNameR;
 	mCapacityMax = mCapacityMaxR;
@@ -27,6 +27,7 @@ Ride::Ride (string mNameR, int mCapacityMaxR, int mCapacityMinR, int mRideDurati
 	mLineLength = 0;							//empty line when created
 	mEarnings = 0;								//no earnings at this point
 	mRidingFor = 0;								//ride has not started yet
+	mThrill = mThrillR;
 	//attractionQueue = new PatronQueue();		//not delivered
 
 }
@@ -39,6 +40,13 @@ int Ride::getMLineLength()
 {
 	return mLineLength;
 }
+
+//simply returns the value of mThrill
+int Ride::getThrill()
+{
+	return mThrill;
+}
+
 //evaluates the state of the ride, for every iteration of the simulation loop
 //if the ride is not currently active
 //check the PatronQueue for Patrons to add to the mCurrentlyRiding[]
