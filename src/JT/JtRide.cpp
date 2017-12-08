@@ -90,7 +90,7 @@ void Ride::evaluateAttraction()
 //riding patrons searching for an empty seat
 //perhaps I should change the method name here since the implementation differes slightly
 //but keeping it as consistent as possible is also attractive.
-void  Ride::setMCurrentlyServing(DummyPatron nextPatron)
+void  Ride::setMCurrentlyServing(SACustomer nextPatron)
 {
 	for (int i =0; i < mCapacityMax; i++)
 	{
@@ -106,13 +106,13 @@ void  Ride::setMCurrentlyServing(DummyPatron nextPatron)
 
 float Ride::takePayment(float cost, int index)
 {
-mCurrentlyRiding[index].money -= cost;
+mCurrentlyRiding[index].mMoney -= cost;
 calculateEarnings(cost);
 }
 
 void Ride::effectPatron(int satisfaction, int index)
 {
-	mCurrentlyRiding[index].satisfaction += satisfacton;
+	mCurrentlyRiding[index].mSatisfaction += satisfacton;
 	unflagPatron(index);
 }
 //Removes a patron form the currently riding array and sets their busy flag to 0
