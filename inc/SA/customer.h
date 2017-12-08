@@ -9,39 +9,31 @@ class SACustomer {
      	  int mCustID;
           int mSatisfaction;
           double mMoney;
-          int mTickets;
           int mHunger;
           int mStamina;
-          int mNausea;
           int mPatience;
-          std::string mFavoriteFood;
-          int mThrillSeeking;
-		  bool mBusy;
-		  bool mQueue;
+          int mThrill;
+	  bool mBusy;
+	  bool mQueue;
+	  int mEnqueueTick;
           double mTicketPrice;
      public :
-          
-          virtual void setMTicketPrice(double) = 0;
-          virtual double getMTicketPrice() = 0;
-		  void setMCustID(int);
-          int getMCustID();
-          void setMSatisfaction(int);
-          int getMSatisfaction();
-          void setMMoney(double);
-          double getMMoney();
-          void setMTickets(int);
-          int getMTickets();
-          void setMHunger (int);
-          int getMHunger();
-          void setMStamina (int);
-          int getMStamina();
-          void setMNausea (int);
-          int getMNausea();
-          void setMPatience (int);
-          int getMPatience();
-          void setMBusy(bool);
-          bool getMBusy();
-          void setMQueue(bool);
-          bool getMQueue();    
+	  SACustomer();
+	  ~SACustomer();
+          int getMCustID(){return mCustID;}
+          void setMSatisfaction(int newSat){mSatisfaction = newSat;}
+          int getMSatisfaction(){return mSatisfaction;}
+          void setMMoney(double newMoney){mMoney = newMoney;}
+          double getMMoney(){return mMoney;}
+          void setMHunger (int newHun){mHunger = newHun;}
+          int getMHunger(){return mHunger;}
+          void setMStamina(int newStam){mStamina = newStam;}
+          int getMStamina(){return mStamina;}
+          void setMBusy(bool newStatus){mBusy = newStatus;}
+          bool getMBusy(){return mBusy;}
+          void setMQueue(bool newStatus){mQueue = newStatus;}
+          bool getMQueue(){return mQueue};
+	  void setMEnqueueTick(int startTick){mEnqueueTick = startTick};
+	  int getWaitTime(int currentTick){return mEnqueueTick - startTick;}
 };
 #endif  // SA_CUSTOMER_H_
