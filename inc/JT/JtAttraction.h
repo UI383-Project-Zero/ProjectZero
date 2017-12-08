@@ -50,7 +50,7 @@ class Attraction
 			
 			virtual SACustomer * removeFromQueue() = 0;
 	
-			virtual int addToQueue () = 0;
+			virtual int addToQueue() = 0;
 };
 
 #endif //ATTRACTION_H
