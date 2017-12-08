@@ -1,149 +1,68 @@
 #include <iostream>
+#include <vector>
 
-#include "../../inc/SA/population.h"
-#include "PopulationConfiguration.cpp"
+#include "customer.h"
+#include "population.h"
+#include "SAWeights.h"
 
-/**
-* Constructor population.
-*
-* @param 
-* @return 
-*/
-inline SAPopulation::SAPopulation() {
-  //std::cout << "SAPopulation() Constructor.\n";
+SAPopulation::SAPopulation() {
+  mNextID = 0;
+  mMaxSize = 0;
+  mCurrentWeatherMod = 3;
 }
 
-/**create population
-* this is for singleton pattern 
-*
-* @return 
-*/
-inline SAPopulation* SAPopulation::getMUniqueInstance() {
-	if (mUniqueInstance == NULL) {
-		mUniqueInstance = new SAPopulation();
-		std::cout << "population instant created\n";
-	}
-	return mUniqueInstance;
-}
-/**
-* Create population.
-*
-* @param 
-* @return initial population
-*/
-int SAPopulation::createPopulation() {
-  std::cout << "SAPopulation::createPopulation()\n";
-  int initialSize = 0;
-  initialSize = SAPopulationConfig::generateSize();
-  return initialSize;
-}
+int SAPopulation::createNewPopulation(int weather){
+  int startSize;
+  switch(weather){
+  case 1:
+    mCurrentWeatherMod = WORST_WEATHER_MOD;
+    break;
+  case 2:
+    mCurrentWeatherMod = BAD_WEATHER_MOD;
+    break;
+  case 3:
+    mCurrentWeatherMod = GOOD_WEATHER_MOD;
+    break;
+  default:
+    mCurrentWeatherMod = GOOD_WEATHER_MOD;
+  }
 
+  startSize = mMaxSize * mCurrentWeatherMod * INITIAL_PERCENT;
 
+  mCustomers.clear();
 
-/**
-* Update customers.
-*
-* @param cust customer 
-* @return void
-*/
-void SAPopulation::updateMCustomers(int cust) {
-  //std::cout << "SAPopulation::updateMCustomers(int)\n";
+  mNextID = 0;
+  
+  if(startSize-mCustomers.capacity() > 0){
+    mCustomers.reserve(startSize - mCustomers.capacity());
+  }
+
+  addCustomers(startSize);
+
+  return startSize;
 }
 
-/**
-* Set population size.
-*
-* @param i to be population size
-* @return void
-*/
-
-inline void SAPopulation::setMPopSize(int i) {
-	//std::cout << "SACustomer::setMPopSize(int)\n";
-	mPopSize = i;
+void SAPopulation::addCustomers(int newCount){
+ SACustomer *temp;
+ for(int i = 0; i<newCount; i++){
+   temp = new SACustomer(getNextID());
+   mCustomers.push_back(temp);
+ }
 }
 
-/**
-* Get population size.
-*
-* @return population size
-*/
-inline int SAPopulation::getMPopSize() {
-	//std::cout << "SACustomer::getMPopSize()\n";
-	return 	mPopSize;
-}
-
-/**
-* Set customers.
-*
-* @param x to be customers
-* @return void
-*/
-inline void SAPopulation::setMCustomers(std::vector<SACustomer*> x) {
-	//std::cout << "SAPopulation::setMCustomers(vector<SACustomer>)\n";
-	mCustomers=x;
-}
-
-/**
-* Get customers.
-* 
-* @return customers.
-*/
-inline std::vector<SACustomer*> SAPopulation::getMCustomers() {
-	//cout << "SAPopulation::getMCustomers()";
-	return mCustomers;
-}
-
-/**
-* Create population.
-*
-* @param 
-* @return initial population
-*/
-//int SAPopulation::createPopulation() {
-  //std::cout << "SAPopulation::createPopulation()\n";
-  //int initialSize = 0;
-  //initialSize = SAPopulationConfig::generateSize();
-  //return initialSize;
-//}
-
-/**
-* Adds new customer to the population.
-*
-* @param cust customer to be added in population
-* @return void
-*/
-inline void SAPopulation::addMCustomers(SACustomer* cust) {
-  //std::cout << "SAPopulation::addMCustomers(SACustomer)\n";
-  mCustomers.push_back (cust);
-}
-
-/**
-* Delete customers from the population.
-*
-* @param cust customer to be removed from population
-* @return bool true if found item to remove, false if not found
-*/
-bool SAPopulation::removeMCustomers(int custId) {
-    //std::cout << "SAPopulation::removeMCustomers(SACustomer)\n";
-    bool isFound = false;
-    std::vector <SACustomer*>::iterator iter;
-    for (iter = mCustomers.begin(); iter != mCustomers.end(); ++iter) {
-        if ((*iter)->getMCustID() == custId) {
-            iter = mCustomers.erase(iter); // After erasing, iter is now pointing the next location.
-            --iter; // Go to the previous location because of ++iter in the end of for loop.
-            isFound = true;
-        }
+void SAPopulation::removeCustomer(int custID){
+  for(int i = 0; i<mCustomers.size(); i++){
+    if(mCustomers[i]->getMCustID()==custID){
+      mCustomers.erase(mCustomers.begin()+i);
+      return;
     }
-    
-    return isFound;
+  }
+  return;
 }
 
-/**
-* Update customers.
-*
-* @param cust customer 
-* @return void
-*/
-//void SAPopulation::updateMCustomers(int cust) {
-  //std::cout << "SAPopulation::updateMCustomers(int)\n";
-//}
+void SAPopulation::updatePopulation(int ticksLeft){
+  if(ticksLeft > STOP_ADD_TICK && mNextID <= mMaxSize * mCurrentWeatherMod){
+    addCustomers(ADD_PER_TICK);
+  }
+  return;
+}

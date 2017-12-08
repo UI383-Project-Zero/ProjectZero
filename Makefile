@@ -11,7 +11,7 @@ test_objs = tst/Catch/tests-main.o SATests.o PVTests.o # CPTests.o JTTests.o KCT
 test_exe = run_tests runSA_tests ruKC_tests runPV_tests runJT_tests runJC_tests
 tstLib = tst/Catch
 ####SA Variables
-SA_objs= population.o customer.o PopulationConfiguration.o
+SA_objs= population.o customer.o 
 SALib = inc/SA
 SASrc = src/SA
 ####KC Variables
@@ -66,9 +66,6 @@ customer.o: src/SA/customer.cpp
 	$(CC) -o $@ -c $^ -I $(SALib)
 
 population.o: src/SA/population.cpp
-	$(CC) -o $@ -c $^ -I $(SALib)
-
-PopulationConfiguration.o: src/SA/PopulationConfiguration.cpp
 	$(CC) -o $@ -c $^ -I $(SALib)
 
 SATests.o: tst/SA/test.cpp

@@ -1,0 +1,7 @@
+#define GOOD_WEATHER_MOD 1.0
+#define BAD_WEATHER_MOD 0.75
+#define WORST_WEATHER_MOD 0.5
+
+#define INITIAL_PERCENT 0.5
+#define ADD_PER_TICK 2
+#define STOP_ADD_TICK 50

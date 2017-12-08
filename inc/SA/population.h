@@ -6,17 +6,19 @@
 
 class SAPopulation {
  private:
-  SAPopulation();  // for making singleton
-  static int mNextID;  // to automatically assign id 
+  SAPopulation();
+  static int mNextID;  // to automatically assign id
+  int getNextID(){return mNextID++;}
   int mMaxSize;
+  double mCurrentWeatherMod;
   std::vector<SACustomer*> mCustomers;
  public:
-  void setMMaxSize(int);
-  int getMMaxSize();
-  std::vector<SACustomer*> getMCustomers();
-  void addMCustomers(int);
-  void removeMCustomer(SACustomer*);
-  int createPopulation();
+  void setMMaxSize(int newMax){mMaxSize = newMax;}
+  int getMMaxSize(){return mMaxSize;}
+  std::vector<SACustomer*> getMCustomers(){return mCustomers;}
+  int createNewPopulation(int);
+  void addCustomers(int);
+  void removeCustomer(int);
   void updatePopulation(int);
 };
 
