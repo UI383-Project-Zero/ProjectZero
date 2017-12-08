@@ -26,6 +26,7 @@ class Ride: public Attraction
 		int mRideDuration;							//the number of the cycles the ride goes for
 		int mRidingFor;								//the number of cycles the ride has been active for
 		float mCost;								//cost that patrons must pay to ride
+		int mThrill;								//thril value of  a ride
 		int mEarnings;								//running total of money recieve from patrons
 		int mSatisfaction;							//satisfaction value a patron recieves from the ride
 		DummyPatron mCurrentlyRiding [capacityMax];	//array that holds the Patrons currently on the ride
@@ -34,19 +35,21 @@ class Ride: public Attraction
 		
 	public 	:
 			//Ride constructor needs to be passed the 5 parameters manually when the ride is instantiated
-			Ride(string mName,int mCapacityMax, int mCapacityMin, int mrideDuration, float mCost, int mSatisfaction);
+			Ride(string mName,int mCapacityMax, int mCapacityMin, int mrideDuration, float mCost, int mSatisfaction, int mThrill);
 			
 				
 
         public  :
 				
 				//constructor more detail in Vendor.cpp
-				Vendor(string name, int rideDuration);
+				//Vendor(string name, int rideDuration);
 				
 				//gets the current mlinelength value
 				int getMLineLength();
 
-
+				//gets the thrill value mThrill form the ride
+				int getMThrill();
+				
 				//evaluates the state of the ride, for every iteration of the simulation loop
 				//if the ride is not currently active
 				//check the PatronQueue for Patrons to add to the mCurrentlyRiding[]
