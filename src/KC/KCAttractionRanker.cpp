@@ -96,11 +96,12 @@ KCAttractionRankerMaster::~KCAttractionRankerMaster(){
 //Sends individual 
 //Sends games and coinstands to gameranker, so that it can build both lists
 //Passes as Attraction-type. Sub-rankers do type conversion
-void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int rideCount, int vendorCount, int gameCount, int coinStandCount){
-  buildStubList(attrList, rideCount + vendorCount + gameCount);
+//void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int rideCount, int vendorCount, int gameCount, int coinStandCount){/////Games cut
+void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int rideCount, int vendorCount){
+  buildStubList(attrList, rideCount + vendorCount);
   mRideList.buildStubList(attrList, rideCount);
   mVendorList.buildStubList(attrList+rideCount, vendorCount);
-  mGameList.buildStubList(attrList+rideCount+vendorCount, gameCount, coinStandCount);
+  //mGameList.buildStubList(attrList+rideCount+vendorCount, gameCount, coinStandCount); ///Games cut
 }
 
 void KCAttractionRankerMaster::buildStubList(Attraction *attrList, int attrCount){
@@ -161,7 +162,7 @@ void KCRideRanker::buildStubList(Attraction *rideList, int rideCount){
   //initial cheapest
   mCheapest = (dynamic_cast<Ride*>(&(rideList[0])))->GetCost();
   mLeastThrilling = (dynamic_cast<Ride*>(&(rideList[0])))->GetThrill();
-  mLeastNauseating = (dynamic_cast<Ride*>(&(rideList[0])))->GetNaus();
+  //mLeastNauseating = (dynamic_cast<Ride*>(&(rideList[0])))->GetNaus(); //Cut
   
   for(int i =0; i < mStubListSize; i++){
     //Add to list
@@ -173,9 +174,10 @@ void KCRideRanker::buildStubList(Attraction *rideList, int rideCount){
       mCheapest = mStubList[i].attrPtr->GetCost();
     if(mStubList[i].attrPtr->GetThrill() < mLeastThrilling)
       mLeastThrilling = mStubList[i].attrPtr->GetThrill();
-    if(mStubList[i].attrPtr->GetNaus() < mLeastNauseating)
-      mLeastNauseating = mStubList[i].attrPtr->GetNaus();
-     //Initial rating
+    //if(mStubList[i].attrPtr->GetNaus() < mLeastNauseating)
+    //mLeastNauseating = mStubList[i].attrPtr->GetNaus();//Cut
+
+    //Initial rating
     rateAttraction(&mStubList[i]);
   }
   sortStubList();
@@ -194,9 +196,12 @@ int KCRideRanker::getLeastThrilling(){
   return mLeastThrilling;
 }
 
+/*////Cut
 int KCRideRanker::getLeastNauseating(){
   return mLeastNauseating;
 }
+*/
+
 
 ///////////////////////////////////////////////////////////////Vendor Ranker Methods
 /*
@@ -204,11 +209,11 @@ int KCRideRanker::getLeastNauseating(){
  */
 
 KCVendorRanker::KCVendorRanker(){
-  std::cout << std::endl << "Created Vendor Ranker";
+  //std::cout << std::endl << "Created Vendor Ranker";
 }
 
 KCVendorRanker::~KCVendorRanker(){
-  std::cout << std::endl << "Deleted Vendor Ranker";
+  //std::cout << std::endl << "Deleted Vendor Ranker";
 }
 
 void KCVendorRanker::buildStubList(Attraction *VendorList, int VendorCount){
@@ -220,9 +225,14 @@ int KCVendorRanker::rateAttraction(KCAttractionStub<Vendor> *targetStub){
 }
 
 
+
+
+
+/*//////Games cut
+
 /*
   Game Ranker methods
- */
+ 
 
 KCGameRanker::KCGameRanker(){
   std::cout << std::endl << "Created Game Ranker";
@@ -246,7 +256,7 @@ int KCGameRanker::rateAttraction(KCAttractionStub<Game>* targetStub){
 
 /*
   CoinStand Ranker methods
- */
+ 
 
 KCCoinStandRanker::KCCoinStandRanker(){
   std::cout << std::endl << "Created CoinStand Ranker";
@@ -267,3 +277,4 @@ int KCCoinStandRanker::rateAttraction(KCAttractionStub<CoinStand> *targetStub){
 int KCCoinStandRanker::getSmallest(){
   return mSmallest;
 }
+*//////////Games cut

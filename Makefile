@@ -78,13 +78,13 @@ SATest: SATest_build clean
 	./run_SAtests
 ######KCDirectives
 KCAttractionRanker.o: src/KC/KCAttractionRanker.cpp
-	$(CC) -o $@ -c $^ -I $(KCLib)
+	$(CC) -o $@ -c $^ -I $(KCLib) -I $(JTLib)
 
 KCCrowdDirector.o: src/KC/KCCrowdDirector.cpp
-	$(CC) -o $@ -c $^ -I $(KCLib) -I $(SALib)
+	$(CC) -o $@ -c $^ -I $(KCLib) -I $(SALib) -I $(JTLib)
 
 KCChooser.o: src/KC/KCChooser.cpp
-	$(CC) -o $@ -c $^ -I $(KCLib) -I $(SALib)
+	$(CC) -o $@ -c $^ -I $(KCLib) -I $(SALib) -I $(JTLib)
 
 KCTests.o: tst/KC/KCTests.cpp
 	$(CC) -o $@ -c $^ -I $(KCLib) -I $(KCSrc) -I $(tstLib)

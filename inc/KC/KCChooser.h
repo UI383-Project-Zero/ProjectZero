@@ -31,7 +31,6 @@
 */
 
 #include "customer.h"
-#include "dummyclasses/AttractionDummy.h" //REPLACE
 
 #include "KCDecisionWeights.h"
 #include "KCAttractionRanker.h"

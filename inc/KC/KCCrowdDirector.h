@@ -34,7 +34,8 @@ class KCCrowdDirector {
 		KCCrowdDirector();
 		~KCCrowdDirector();
 		
-		void getRides(Attraction*,int,int,int,int);
+		//void getRides(Attraction*,int,int,int,int);//Games cut
+		void getRides(Attraction*, int, int);
 		
 		void updateRides();
 

@@ -12,9 +12,10 @@ KCCrowdDirector::~KCCrowdDirector(){
 
 //Calls buildstublist for mMasterList
 //Assumes array of attraction base type
-void KCCrowdDirector::getRides(Attraction *aList, int rideCount, int vendorCount, int gameCount, int coinStandCount){
+//void KCCrowdDirector::getRides(Attraction *aList, int rideCount, int vendorCount, int gameCount, int coinStandCount){///Games cut
+void KCCrowdDirector::getRides(Attraction *aList, int rideCount, int vendorCount){
   //std::cout << std::endl << "Got a list";
-  mMasterList.buildStubList(aList, rideCount, vendorCount, gameCount, coinStandCount);
+  mMasterList.buildStubList(aList, rideCount, vendorCount);
 }
 
 //Just gets pointer for population object

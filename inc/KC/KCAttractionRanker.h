@@ -3,7 +3,8 @@
 
 
 //Replace with appropriate header when other module finalized
-#include  "dummyclasses/AttractionDummy.h"
+#include "JtAttraction.h"
+#include "JtRide.h"
 #include "KCDecisionWeights.h"
 
 
@@ -90,7 +91,7 @@ class KCAttractionRankerSuper {
 class KCRideRanker : protected KCAttractionRankerSuper<KCAttractionStub<Ride> >{
 	private:
 		int mLeastThrilling;
-		int mLeastNauseating;
+		//int mLeastNauseating;//Cut
 	public:
 		KCRideRanker();
 		~KCRideRanker();
@@ -99,7 +100,7 @@ class KCRideRanker : protected KCAttractionRankerSuper<KCAttractionStub<Ride> >{
 		int rateAttraction(KCAttractionStub<Ride>*);
 		
 		int getLeastThrilling();
-		int getLeastNauseating();
+		//int getLeastNauseating();//Cut
 };
 
 /*
@@ -120,7 +121,8 @@ class KCVendorRanker : protected KCAttractionRankerSuper<KCAttractionStub<Vendor
 		void buildStubList(Attraction*, int);
 		int rateAttraction(KCAttractionStub<Vendor>*);
 };
-
+////////////////////////////////Not implemented
+/*
 /*
 	Coin Stand Ranker
 	Maintains list of coin stands.
@@ -137,7 +139,7 @@ class KCVendorRanker : protected KCAttractionRankerSuper<KCAttractionStub<Vendor
 	mSmallest will be used for minimum coin-value purchase.
 	
 	Prevents purchases if unable to afford cheapest bundle or if unable to afford enough for the cheapest game.
-*/
+
 
 class KCCoinStandRanker : protected KCAttractionRankerSuper<KCAttractionStub<CoinStand> >{
 	private:
@@ -161,7 +163,7 @@ class KCCoinStandRanker : protected KCAttractionRankerSuper<KCAttractionStub<Coi
 	Cost based on direct coin-cost of games.
 	
 	mCoinStandList holds the list of coin venders. 
-*/
+
 
 class KCGameRanker : protected KCAttractionRankerSuper <KCAttractionStub<Game> >{
 	public:
@@ -175,7 +177,7 @@ class KCGameRanker : protected KCAttractionRankerSuper <KCAttractionStub<Game> >
 		
 		KCCoinStandRanker *mCoinStandList;
 };
-
+*//////////////////////////////Not implemented
 
 /*
 	Attraction ranker Master class
@@ -196,13 +198,14 @@ class KCAttractionRankerMaster : protected KCAttractionRankerSuper <KCAttraction
 		~KCAttractionRankerMaster();
 		
 		void buildStubList(Attraction*, int);
-		void buildStubList(Attraction*, int, int, int, int);
+		void buildStubList(Attraction*, int, int);
+		//void buildStubList(Attraction*, int, int, int, int); //Games cut
 		int rateAttraction(KCAttractionStub<Attraction>*);
 
 		void updateStubLists();
 		
 		KCRideRanker mRideList;
-		KCGameRanker mGameList;
+		//KCGameRanker mGameList; //////////Cut
 		KCVendorRanker mVendorList;
 };
 
